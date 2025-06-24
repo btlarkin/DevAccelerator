@@ -12,9 +12,11 @@
 - [[04_Process.md|Freelance Consultant Development Process]]
 - [[05_Packages.md|Freelance & Consulting Service Packages]]
 - [[06_Business_Model.md|Strategic Business Model]]
-- [[00_Roadmap_Kanban.md|Roadmap Kanban Board]]
-- Templates (09_Templates/)
+- [[00_Roadmap_Kanban|Roadmap Kanban Board]]
+- Project Notes (03_Projects)
 - Weekly Reviews (07_Weekly_Reviews/)
 - Client Work (08_Client_Work/)
+- Templates (09_Templates/)
 - Resources (10_Resources/)
+- Project Templates (11_Project_Templates)
 - scripts/

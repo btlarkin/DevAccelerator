@@ -1,0 +1,9 @@
+{
+  "dataview": {
+    "allowInlineJs": true
+  },
+  "templater": {
+    "template_folder": "09_Templates"
+  }
+}
+
