@@ -1,6 +1,7 @@
 # 📂 FullStackDevPlan Index
 
 - [[01_Projected_Outcome.md|Projected Outcome & Experience]]
+- [[Phase0_Primer|Phase 1: CS Primer]]
 - [[Phase1_Foundation|Phase 1: Foundational Skills & Initial Freelancing]]
 - [[Phase2_Fullstack|Phase 2: Full-Stack Integration & Cloud Resume Challenge]]
 - [[Phase3_DevOps|Phase 3: DevOps & Modular Capstone]]

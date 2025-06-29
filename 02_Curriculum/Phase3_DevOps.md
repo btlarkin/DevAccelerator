@@ -4,19 +4,34 @@
 
 ### 1. Core DevOps & Automation
 
-* [ ] **Follow the roadmap.sh DevOps learning path** from start to finish to ensure comprehensive coverage of tools and concepts including Linux, shell scripting, CI/CD, containers, and monitoring.
 * [ ] **Linux Shell Scripting Projects**.
 * [ ] **Linux Basics For Hackers**.
 * [ ] **Decoding DevOps**.
 * [ ] **DevOps Projects**.
 * [ ] **DevOps for the Desperate**.
+* [ ] **Basic Dockerfile:** Containerize your backend API for consistent deployment.
+* [ ] **EC2 Instance:** Provision a cloud VM as your deployment target.
+* [ ] **Node.js Service Deployment:** Create a CI/CD pipeline to automate deployment to the cloud VM.
 
-### 2. Capstone Project 2: The Evolved Roadmap.sh Project Chain
+### 2. Capstone Project 2: The Evolved Roadmap.sh Project Chain (Study Helper App)
 
-* [ ] **Intermediate:** Evolve your frontend project by building a `Markdown Note-taking App` UI.
-* [ ] **Intermediate:** Build the backend `Markdown Note-taking App API` using Node.js or Django to connect to a SQL database.
-* [ ] **Intermediate DevOps:** Containerize the app with Docker and use GitHub Actions to deploy it to an EC2 instance to show a complete CI/CD pipeline.
-* [ ] **Advanced:** Add a `Caching Proxy` and a `Database Backup Utility` to your backend.
-* [ ] **Advanced DevOps:** Implement IaC with Terraform to provision the EC2 instance.
+* [ ] **Markdown Note-taking App:** Build the frontend interface for the note-taking application.
+* [ ] **Markdown Note-taking App API:** Develop the backend for creating, editing, and storing notes.
+* [ ] **Flash Cards:** Build a component to help users study their notes.
+* [ ] **Quiz App:** Develop a quiz feature for self-testing.
+* [ ] **Pomodoro Timer:** Create a productivity timer within the app.
+* [ ] **Dockerized Service:** Containerize the entire application (frontend + backend).
+* [ ] **IaC on DigitalOcean:** Use Infrastructure as Code (Terraform) to provision your cloud infrastructure.
+* [ ] **Configuration Management:** Automate the server setup with Ansible.
+* [ ] **Database Backup Utility:** Create a script to automate database backups.
+* [ ] **Caching Proxy:** Implement a caching layer to improve API performance.
 
-**Deliverable** A fully automated CI/CD pipeline for a Dockerized web application from the roadmap.sh project chain, demonstrating end-to-end CI/CD best practices and Infrastructure as Code (IaC) from a Git repository to a containerized deployment on a cloud VM.
+### 3. Continue with OSSU Advanced CS Topics
+
+* [ ] **Advanced systems:** Complete the "Computation Structures" series.
+* [ ] **Advanced programming:** Choose relevant courses based on interest.
+* [ ] **Advanced theory:** Choose relevant courses based on interest.
+* [ ] **Advanced information security:** Choose relevant courses based on interest.
+* [ ] **Advanced math:** Choose relevant courses based on interest.
+
+**Deliverable:** A fully automated CI/CD pipeline for a Dockerized web application from the roadmap.sh project chain, demonstrating end-to-end CI/CD best practices and Infrastructure as Code (IaC) from a Git repository to a containerized deployment on a cloud VM.
