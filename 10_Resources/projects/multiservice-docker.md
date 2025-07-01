@@ -25,7 +25,7 @@ The goal of this project is to help you practice a more advanced docker setup in
 Create a multi-service application using Docker that consists of the following components:
 
 - **Web Application**: A basic react-based frontend application.
-- **API Service**: A Node.js Express backend API.
+- **API Service**: A Node.js Express backend API.Blue-Green Deployment:
 - **Database**: A MongoDB instance for storing application data.
 - **Cache**: A Redis cache for improving performance.
 - **Reverse Proxy**: An Nginx reverse proxy to handle incoming requests.

@@ -4,53 +4,52 @@
     "type": "split",
     "children": [
       {
-        "id": "b5f633613ff0b94b",
+        "id": "1c82bfdfaf917ea0",
         "type": "tabs",
         "children": [
           {
-            "id": "f73e7042eaae0274",
+            "id": "e5fb48b64b35d6c3",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "10_Resources/100_frontend.md",
-                "mode": "source",
+                "file": "02_Curriculum/Phase0_Primer.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "100_frontend"
+              "title": "Phase0_Primer"
             }
           },
           {
-            "id": "1a8bdd2b8a219a03",
+            "id": "728d890bee756489",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "12_Projects/7_Real_Time_Advanced.md",
+                "file": "10_Resources/200_backend.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "7_Real_Time_Advanced"
+              "title": "200_backend"
             }
           },
           {
-            "id": "69030a7af5d99e2b",
+            "id": "65d4d4c0fe7fdb42",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02_Curriculum/Phase4_Specialization.md",
+                "file": "10_Resources/consolidated_course_order.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Phase4_Specialization"
+              "title": "consolidated_course_order"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +81,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#frontend",
+                "query": "imposter",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": true,
@@ -209,55 +208,58 @@
       "workspaces:Manage workspace layouts": false,
       "templater-obsidian:Templater": false,
       "obsidian-kanban:Create new board": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "omnisearch:Omnisearch": false,
+      "homepage:Open homepage": false
     }
   },
-  "active": "69030a7af5d99e2b",
+  "active": "e5fb48b64b35d6c3",
   "lastOpenFiles": [
     "02_Curriculum/Phase3_DevOps.md",
+    "02_Curriculum/Phase4_Specialization.md",
     "02_Curriculum/Phase2_Fullstack.md",
+    "10_Resources/200_backend.md",
+    "02_Curriculum/Phase1_Foundation.md",
+    "10_Resources/100_frontend.md",
+    "10_Resources/consolidated_course_order.md",
+    "10_Resources/updated_plan.md",
+    "02_Curriculum/Phase0_Primer.md",
+    "10_Resources/learning_library/The Cloud Resume Challenge Guidebook - AWS Edition.pdf",
+    "10_Resources/learning_library/mysqlcrashcourse.pdf",
+    "10_Resources/learning_library/The Complete Developer. Master the Full Stack with...2024.pdf",
+    "10_Resources/projects/multi-container-service.md",
+    "10_Resources/projects/multiservice-docker.md",
+    "10_Resources/computer-science/coursepages/spd/README.md",
+    "10_Resources/lark_self_environment.md",
+    "10_Resources/learning_library/Linux Basics For Hackers.pdf",
+    "10_Resources/computer-science/README.md",
+    "00_Index.md",
+    "10_Resources/images/best-practices/frontend-performance.png",
+    "10_Resources/images/design-system.png",
+    "10_Resources/roadmaps-original/design-system/design-system.md",
+    "10_Resources/computer-science/extras/readings.md",
+    "10_Resources/computer-science/extras/courses.md",
+    "10_Resources/computer-science/coursepages/intro-cs/README.md",
+    "().md",
+    "12_Projects/7_Real_Time_Advanced.md",
     "10_Resources/500_blockchain.md",
     "10_Resources/400_ai-engineer.md",
-    "10_Resources/200_backend.md",
-    "02_Curriculum/Phase4_Specialization.md",
-    "02_Curriculum/Phase1_Foundation.md",
-    "02_Curriculum/Phase0_Primer.md",
     "10_Resources/computer-science/_config.yml",
     "10_Resources/computer-science/coursepages/spd/space-invaders-instructions.png",
     "10_Resources/computer-science/coursepages/spd/change-dr-racket-notation.png",
     "10_Resources/computer-science/coursepages/spd/automatic-parentheses.png",
-    "10_Resources/computer-science/coursepages/spd/README.md",
     "10_Resources/computer-science/coursepages/ostep/vm-xv6-intro.md",
     "10_Resources/computer-science/coursepages/ostep/Scheduling-xv6-lottery.md",
     "10_Resources/computer-science/coursepages/ostep/Reading-order.md",
-    "10_Resources/computer-science/coursepages/ostep/README.md",
-    "10_Resources/computer-science/coursepages/ostep/Project-2A-processes-shell.md",
-    "10_Resources/computer-science/coursepages/intro-programming/README.md",
-    "10_Resources/computer-science/coursepages/ostep/Project-1B-initial-xv6.md",
-    "10_Resources/computer-science/coursepages/intro-cs/README.md",
     "10_Resources/computer-science/coursepages/spd",
     "10_Resources/computer-science/coursepages/ostep",
     "10_Resources/computer-science/coursepages/intro-programming",
     "10_Resources/computer-science/coursepages/intro-cs",
     "10_Resources/computer-science/coursepages",
-    "10_Resources/computer-science/README.md",
-    "10_Resources/computer-science/HELP.md",
-    "10_Resources/computer-science/_includes/nav-items.html",
-    "10_Resources/computer-science/_includes/footer.html",
-    "10_Resources/computer-science/_includes/custom-head.html",
-    "10_Resources/computer-science/_includes",
-    "10_Resources/computer-science/CHANGELOG.md",
     "10_Resources/computer-science/images/ossu-logo.webp",
     "10_Resources/computer-science/images/keep-learning.webp",
     "10_Resources/computer-science/images/favicon.svg",
     "10_Resources/computer-science/images/favicon-96x96.png",
-    "10_Resources/computer-science/FAQ.md",
-    "10_Resources/computer-science/CURRICULAR_GUIDELINES.md",
-    "10_Resources/computer-science/extras/readings.md",
-    "10_Resources/computer-science/extras/puzzles-practice-plods.md",
-    "10_Resources/computer-science/extras/other_curricula.md",
-    "10_Resources/computer-science/extras/courses.md",
-    "10_Resources/images/javascript.png",
-    "10_Resources/images/typescript.png"
+    "10_Resources/images/javascript.png"
   ]
 }

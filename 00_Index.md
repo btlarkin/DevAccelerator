@@ -1,12 +1,12 @@
 # 📂 FullStackDevPlan Index
 
-- [[01_Projected_Outcome.md|Projected Outcome & Experience]]
-- [[Phase0_Primer|Phase 1: CS Primer]]
+- [[Phase0_Primer|Phase 0: CS Primer]]
 - [[Phase1_Foundation|Phase 1: Foundational Skills & Initial Freelancing]]
 - [[Phase2_Fullstack|Phase 2: Full-Stack Integration & Cloud Resume Challenge]]
 - [[Phase3_DevOps|Phase 3: DevOps & Modular Capstone]]
 - [[Phase4_Specialization|Phase 4: Advanced Specialization & Strategic Consulting]]
 - [[03_Timeline.md|Completion Timeline]]
+- [[01_Projected_Outcome.md|Projected Outcome & Experience]]
 - [[04_Process.md|Freelance Consultant Development Process]]
 - [[05_Packages.md|Freelance & Consulting Service Packages]]
 - [[06_Business_Model.md|Strategic Business Model]]

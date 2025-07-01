@@ -109,10 +109,10 @@ just remember that you can't purchase success!
 
 ## Prerequisites
 
-- [Core CS](#core-cs) assumes the student has already taken [high school math](https://ossu.dev/precollege-math), including algebra, geometry, and pre-calculus.
-- [Advanced CS](#advanced-cs) assumes the student has already taken the entirety of Core CS
+- [[#Core CS|Core-CS]] assumes the student has already taken [high school math](https://ossu.dev/precollege-math), including algebra, geometry, and pre-calculus.
+- [[#Advanced CS|Advanced CS]] assumes the student has already taken the entirety of Core CS
 and is knowledgeable enough now to decide which electives to take.
-- Note that [Advanced systems](#advanced-systems) assumes the student has taken a basic physics course (e.g. AP Physics in high school).
+- Note that [[#Advanced systems|Advanced systems]] assumes the student has taken a basic physics course (e.g. AP Physics in high school).
 
 ## Intro CS
 
@@ -124,9 +124,9 @@ This course will introduce you to the world of computer science and programming.
 `basic data structures and algorithms`
 `and more`
 
-Courses | Duration | Effort | Prerequisites | Discussion
-:-- | :--: | :--: | :--: | :--:
-[Introduction to Computer Science and Programming using Python](coursepages/intro-cs/README.md) | 14 weeks | 6-10 hours/week | [high school algebra](https://ossu.dev/precollege-math) | [chat](https://discord.gg/jvchSm9)
+| Courses                                                                                         | Duration |     Effort      |                      Prerequisites                      |             Discussion             |
+| :---------------------------------------------------------------------------------------------- | :------: | :-------------: | :-----------------------------------------------------: | :--------------------------------: |
+| [Introduction to Computer Science and Programming using Python](coursepages/intro-cs/README.md) | 14 weeks | 6-10 hours/week | [high school algebra](https://ossu.dev/precollege-math) | [chat](https://discord.gg/jvchSm9) |
 
 ## Core CS
 
@@ -147,15 +147,15 @@ All coursework under Core CS is **required**, unless otherwise indicated.
 `Ruby`
 `and more`
 
-Courses | Duration | Effort | Prerequisites | Discussion
-:-- | :--: | :--: | :--: | :--:
-[Systematic Program Design](coursepages/spd/README.md) | 13 weeks | 8-10 hours/week | none | chat: [part 1](https://discord.gg/RfqAmGJ) / [part 2](https://discord.gg/kczJzpm)
-[Class-based Program Design](https://course.ccs.neu.edu/cs2510sp22/index.html) | 13 weeks | 5-10 hours/week | Systematic Program Design, High School Math | [chat](https://discord.com/channels/744385009028431943/891411727294562314)
-[Programming Languages, Part A](https://www.coursera.org/learn/programming-languages) | 5 weeks | 4-8 hours/week | Systematic Program Design ([Hear instructor](https://www.coursera.org/lecture/programming-languages/recommended-background-k1yuh)) | [chat](https://discord.gg/8BkJtXN)
-[Programming Languages, Part B](https://www.coursera.org/learn/programming-languages-part-b) | 3 weeks | 4-8 hours/week | Programming Languages, Part A | [chat](https://discord.gg/EeA7VR9)
-[Programming Languages, Part C](https://www.coursera.org/learn/programming-languages-part-c) | 3 weeks | 4-8 hours/week | Programming Languages, Part B | [chat](https://discord.gg/8EZUVbA)
-[Object-Oriented Design](https://course.ccs.neu.edu/cs3500f19/) | 13 weeks | 5-10 hours/week | Class Based Program Design | [chat](https://discord.com/channels/744385009028431943/891412022120579103)
-[Software Architecture](https://www.coursera.org/learn/software-architecture) | 4 weeks | 2-5 hours/week | Object Oriented Design | [chat](https://discord.com/channels/744385009028431943/891412169638432788)
+| Courses                                                                                      | Duration |     Effort      |                                                           Prerequisites                                                            |                                    Discussion                                     |
+| :------------------------------------------------------------------------------------------- | :------: | :-------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------: |
+| [Systematic Program Design](coursepages/spd/README.md)                                       | 13 weeks | 8-10 hours/week |                                                                none                                                                | chat: [part 1](https://discord.gg/RfqAmGJ) / [part 2](https://discord.gg/kczJzpm) |
+| [Class-based Program Design](https://course.ccs.neu.edu/cs2510sp22/index.html)               | 13 weeks | 5-10 hours/week |                                            Systematic Program Design, High School Math                                             |    [chat](https://discord.com/channels/744385009028431943/891411727294562314)     |
+| [Programming Languages, Part A](https://www.coursera.org/learn/programming-languages)        | 5 weeks  | 4-8 hours/week  | Systematic Program Design ([Hear instructor](https://www.coursera.org/lecture/programming-languages/recommended-background-k1yuh)) |                        [chat](https://discord.gg/8BkJtXN)                         |
+| [Programming Languages, Part B](https://www.coursera.org/learn/programming-languages-part-b) | 3 weeks  | 4-8 hours/week  |                                                   Programming Languages, Part A                                                    |                        [chat](https://discord.gg/EeA7VR9)                         |
+| [Programming Languages, Part C](https://www.coursera.org/learn/programming-languages-part-c) | 3 weeks  | 4-8 hours/week  |                                                   Programming Languages, Part B                                                    |                        [chat](https://discord.gg/8EZUVbA)                         |
+| [Object-Oriented Design](https://course.ccs.neu.edu/cs3500f19/)                              | 13 weeks | 5-10 hours/week |                                                     Class Based Program Design                                                     |    [chat](https://discord.com/channels/744385009028431943/891412022120579103)     |
+| [Software Architecture](https://www.coursera.org/learn/software-architecture)                | 4 weeks  | 2-5 hours/week  |                                                       Object Oriented Design                                                       |    [chat](https://discord.com/channels/744385009028431943/891412169638432788)     |
 
 ### Core math
 Discrete math (Math for CS) is a prerequisite and closely related to the study of algorithms and data structures. Calculus both prepares students for discrete math and helps students develop mathematical maturity.
@@ -168,12 +168,12 @@ Discrete math (Math for CS) is a prerequisite and closely related to the study o
 `discrete probability`
 `and more`
 
-Courses | Duration | Effort | Notes | Prerequisites | Discussion
-:-- | :--: | :--: | :--: | :--: | :--:
-[Calculus 1A: Differentiation](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.1x+2T2019/about) ([alternative](https://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/index.htm)) | 13 weeks | 6-10 hours/week | The alternate covers this and the following 2 courses | [high school math](https://ossu.dev/precollege-math) | [chat](https://discord.gg/mPCt45F)
-[Calculus 1B: Integration](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.2x+3T2019/about) | 13 weeks | 5-10 hours/week | - | Calculus 1A | [chat](https://discord.gg/sddAsZg)
-[Calculus 1C: Coordinate Systems & Infinite Series](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.3x+1T2020/about) | 6 weeks | 5-10 hours/week | - | Calculus 1B | [chat](https://discord.gg/FNEcNNq)
-[Mathematics for Computer Science](https://openlearninglibrary.mit.edu/courses/course-v1:OCW+6.042J+2T2019/about) ([alternative](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/)) | 13 weeks | 5 hours/week | [2015/2019 solutions](https://github.com/spamegg1/Math-for-CS-solutions) [2010 solutions](https://github.com/frevib/mit-cs-math-6042-fall-2010-problems) [2005 solutions](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2005/assignments/). | Calculus 1C | [chat](https://discord.gg/EuTzNbF)
+| Courses                                                                                                                                                                                                                        | Duration |     Effort      |                                                                                                                                                       Notes                                                                                                                                                        |                    Prerequisites                     |             Discussion             |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :-------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------: | :--------------------------------: |
+| [Calculus 1A: Differentiation](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.1x+2T2019/about) ([alternative](https://ocw.mit.edu/courses/mathematics/18-01sc-single-variable-calculus-fall-2010/index.htm)) | 13 weeks | 6-10 hours/week |                                                                                                                               The alternate covers this and the following 2 courses                                                                                                                                | [high school math](https://ossu.dev/precollege-math) | [chat](https://discord.gg/mPCt45F) |
+| [Calculus 1B: Integration](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.2x+3T2019/about)                                                                                                                   | 13 weeks | 5-10 hours/week |                                                                                                                                                         -                                                                                                                                                          |                     Calculus 1A                      | [chat](https://discord.gg/sddAsZg) |
+| [Calculus 1C: Coordinate Systems & Infinite Series](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.3x+1T2020/about)                                                                                          | 6 weeks  | 5-10 hours/week |                                                                                                                                                         -                                                                                                                                                          |                     Calculus 1B                      | [chat](https://discord.gg/FNEcNNq) |
+| [Mathematics for Computer Science](https://openlearninglibrary.mit.edu/courses/course-v1:OCW+6.042J+2T2019/about) ([alternative](https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/))              | 13 weeks |  5 hours/week   | [2015/2019 solutions](https://github.com/spamegg1/Math-for-CS-solutions) [2010 solutions](https://github.com/frevib/mit-cs-math-6042-fall-2010-problems) [2005 solutions](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2005/assignments/). |                     Calculus 1C                      | [chat](https://discord.gg/EuTzNbF) |
 
 
 ### CS Tools
@@ -200,10 +200,10 @@ Courses | Duration | Effort | Prerequisites | Discussion
 `memory`
 `computer architecture`
 `assembly`
-`machine language`
+`machine languagefrom OSSU "Core programming".`
 `virtual machines`
 `high-level languages`
-`compilers`
+`compilers[Advanced systems]`
 `operating systems`
 `network protocols`
 `and more`
@@ -216,6 +216,7 @@ Courses | Duration | Effort | Additional Text / Assignments| Prerequisites | Dis
 [Computer Networking: a Top-Down Approach](http://gaia.cs.umass.edu/kurose_ross/online_lectures.htm)| 8 weeks | 4–12 hours/week | [Wireshark Labs](http://gaia.cs.umass.edu/kurose_ross/wireshark.php) | algebra, probability, basic CS | [chat](https://discord.gg/MJ9YXyV)
 
 ### Core theory
+
 
 **Topics covered**:
 `divide and conquer`
@@ -264,7 +265,7 @@ Courses | Duration | Effort | Prerequisites | Discussion
 
 **Topics covered**:
 `Agile methodology`
-`REST`
+`RESTfrom OSSU "Core programming".`
 `software specifications`
 `refactoring`
 `relational databases`
@@ -294,7 +295,7 @@ Courses | Duration | Effort | Prerequisites | Discussion
 `Professional Ethics`
 `Intellectual Property`
 `Privacy and Civil Liberties`
-`and more`
+`and morefrom OSSU "Core programming".`
 
 Courses | Duration | Effort | Prerequisites | Discussion
 :-- | :--: | :--: | :--: | :--:
@@ -319,14 +320,14 @@ But students should take *every* course that is relevant to the field they inten
 `large-scale software architecture and design`
 `and more`
 
-Courses | Duration | Effort | Prerequisites
-:-- | :--: | :--: | :--:
-[Parallel Programming](https://www.coursera.org/learn/scala-parallel-programming)| 4 weeks | 6-8 hours/week | Scala programming
-[Compilers](https://www.edx.org/learn/computer-science/stanford-university-compilers) | 9 weeks | 6-8 hours/week | none
-[Introduction to Haskell](https://www.seas.upenn.edu/~cis194/fall16/)| 14 weeks | - | -
-[Learn Prolog Now!](https://www.let.rug.nl/bos/lpn//lpnpage.php?pageid=online) ([alternative](https://github.com/ossu/computer-science/files/6085884/lpn.pdf))*| 12 weeks | - | -
-[Software Debugging](https://www.youtube.com/playlist?list=PLAwxTw4SYaPkxK63TiT88oEe-AIBhr96A)| 8 weeks | 6 hours/week | Python, object-oriented programming
-[Software Testing](https://www.youtube.com/playlist?list=PLAwxTw4SYaPkWVHeC_8aSIbSxE_NXI76g) | 4 weeks | 6 hours/week | Python, programming experience
+| Courses                                                                                                                                                         | Duration |     Effort     |            Prerequisites            |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :------------: | :---------------------------------: |
+| [Parallel Programming](https://www.coursera.org/learn/scala-parallel-programming)                                                                               | 4 weeks  | 6-8 hours/week |          Scala programming          |
+| [Compilers](https://www.edx.org/learn/computer-science/stanford-university-compilers)                                                                           | 9 weeks  | 6-8 hours/week |                none                 |
+| [Introduction to Haskell](https://www.seas.upenn.edu/~cis194/fall16/)                                                                                           | 14 weeks |       -        |                  -                  |
+| [Learn Prolog Now!](https://www.let.rug.nl/bos/lpn//lpnpage.php?pageid=online) ([alternative](https://github.com/ossu/computer-science/files/6085884/lpn.pdf))* | 12 weeks |       -        |                  -                  |
+| [Software Debugging](https://www.youtube.com/playlist?list=PLAwxTw4SYaPkxK63TiT88oEe-AIBhr96A)                                                                  | 8 weeks  |  6 hours/week  | Python, object-oriented programming |
+| [Software Testing](https://www.youtube.com/playlist?list=PLAwxTw4SYaPkWVHeC_8aSIbSxE_NXI76g)                                                                    | 4 weeks  |  6 hours/week  |   Python, programming experience    |
 
 (*) book by Blackburn, Bos, Striegnitz (compiled from [source](https://github.com/LearnPrologNow/lpn), redistributed under [CC license](https://creativecommons.org/licenses/by-sa/4.0/))
 
@@ -348,11 +349,11 @@ Courses | Duration | Effort | Prerequisites
 `system call interface`
 `and more`
 
-Courses | Duration | Effort | Prerequisites | Notes
-:-- | :--: | :--: | :--: | :--:
-[Computation Structures 1: Digital Circuits](https://learning.edx.org/course/course-v1:MITx+6.004.1x_3+3T2016) [alternative 1](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/) [alternative 2](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/) | 10 weeks | 6 hours/week | [Nand2Tetris II](https://www.coursera.org/learn/nand2tetris2) | Alternate links contain all 3 courses.
-[Computation Structures 2: Computer Architecture](https://learning.edx.org/course/course-v1:MITx+6.004.2x+3T2015) | 10 weeks | 6 hours/week | Computation Structures 1 | - 
-[Computation Structures 3: Computer Organization](https://learning.edx.org/course/course-v1:MITx+6.004.3x_2+1T2017) | 10 weeks | 6 hours/week | Computation Structures 2 | -
+| Courses                                                                                                                                                                                                                                                                                      | Duration |    Effort    |                         Prerequisites                         |                 Notes                  |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :----------: | :-----------------------------------------------------------: | :------------------------------------: |
+| [Computation Structures 1: Digital Circuits](https://learning.edx.org/course/course-v1:MITx+6.004.1x_3+3T2016) [alternative 1](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2017/) [alternative 2](https://ocw.mit.edu/courses/6-004-computation-structures-spring-2009/) | 10 weeks | 6 hours/week | [Nand2Tetris II](https://www.coursera.org/learn/nand2tetris2) | Alternate links contain all 3 courses. |
+| [Computation Structures 2: Computer Architecture](https://learning.edx.org/course/course-v1:MITx+6.004.2x+3T2015)                                                                                                                                                                            | 10 weeks | 6 hours/week |                   Computation Structures 1                    |                   -                    |
+| [Computation Structures 3: Computer Organization](https://learning.edx.org/course/course-v1:MITx+6.004.3x_2+1T2017)                                                                                                                                                                          | 10 weeks | 6 hours/week |                   Computation Structures 2                    |                   -                    |
 
 ### Advanced theory
 
@@ -372,32 +373,31 @@ Courses | Duration | Effort | Prerequisites | Notes
 `game trees`
 `and more`
 
-Courses | Duration | Effort | Prerequisites
-:-- | :--: | :--: | :--:
-[Theory of Computation](https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/) ([alternative](https://www.youtube.com/playlist?list=PLEE7DF8F5E0203A56)) | 13 weeks | 10 hours/week | [Mathematics for Computer Science](https://openlearninglibrary.mit.edu/courses/course-v1:OCW+6.042J+2T2019/about), logic, algorithms
-[Computational Geometry](https://www.edx.org/learn/geometry/tsinghua-university-ji-suan-ji-he-computational-geometry) | 16 weeks | 8 hours/week | algorithms, C++
-[Game Theory](https://www.coursera.org/learn/game-theory-1) | 8 weeks | 3 hours/week | mathematical thinking, probability, calculus
-
+| Courses                                                                                                                                                                 | Duration |    Effort     |                                                            Prerequisites                                                             |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :-----------: | :----------------------------------------------------------------------------------------------------------------------------------: |
+| [Theory of Computation](https://ocw.mit.edu/courses/18-404j-theory-of-computation-fall-2020/) ([alternative](https://www.youtube.com/playlist?list=PLEE7DF8F5E0203A56)) | 13 weeks | 10 hours/week | [Mathematics for Computer Science](https://openlearninglibrary.mit.edu/courses/course-v1:OCW+6.042J+2T2019/about), logic, algorithms |
+| [Computational Geometry](https://www.edx.org/learn/geometry/tsinghua-university-ji-suan-ji-he-computational-geometry)                                                   | 16 weeks | 8 hours/week  |                                                           algorithms, C++                                                            |
+| [Game Theory](https://www.coursera.org/learn/game-theory-1)                                                                                                             | 8 weeks  | 3 hours/week  |                                             mathematical thinking, probability, calculus                                             |
 ### Advanced Information Security
 
-Courses | Duration | Effort | Prerequisites
-:-- | :--: | :--: | :--:
-[Web Security Fundamentals](https://www.edx.org/learn/computer-security/ku-leuven-web-security-fundamentals) | 5 weeks | 4-6 hours/week | understanding basic web technologies
-[Security Governance & Compliance](https://www.coursera.org/learn/security-governance-compliance) | 3 weeks | 3 hours/week | -
-[Digital Forensics Concepts](https://www.coursera.org/learn/digital-forensics-concepts) | 3 weeks | 2-3 hours/week | Core Security
-[Secure Software Development: Requirements, Design, and Reuse](https://www.edx.org/learn/software-development/the-linux-foundation-secure-software-development-requirements-design-and-reuse) | 7 weeks | 1-2 hours/week | Core Programming and Core Security
-[Secure Software Development: Implementation](https://www.edx.org/learn/software-development/the-linux-foundation-secure-software-development-implementation) | 7 weeks | 1-2 hours/week | Secure Software Development: Requirements, Design, and Reuse
-[Secure Software Development: Verification and More Specialized Topics](https://www.edx.org/learn/software-engineering/the-linux-foundation-secure-software-development-verification-and-more-specialized-topics) | 7 weeks | 1-2 hours/week | Secure Software Development: Implementation
+| Courses                                                                                                                                                                                                           | Duration |     Effort     |                        Prerequisites                         |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :------------: | :----------------------------------------------------------: |
+| [Web Security Fundamentals](https://www.edx.org/learn/computer-security/ku-leuven-web-security-fundamentals)                                                                                                      | 5 weeks  | 4-6 hours/week |             understanding basic web technologies             |
+| [Security Governance & Compliance](https://www.coursera.org/learn/security-governance-compliance)                                                                                                                 | 3 weeks  |  3 hours/week  |                              -                               |
+| [Digital Forensics Concepts](https://www.coursera.org/learn/digital-forensics-concepts)                                                                                                                           | 3 weeks  | 2-3 hours/week |                        Core Security                         |
+| [Secure Software Development: Requirements, Design, and Reuse](https://www.edx.org/learn/software-development/the-linux-foundation-secure-software-development-requirements-design-and-reuse)                     | 7 weeks  | 1-2 hours/week |              Core Programming and Core Security              |
+| [Secure Software Development: Implementation](https://www.edx.org/learn/software-development/the-linux-foundation-secure-software-development-implementation)                                                     | 7 weeks  | 1-2 hours/week | Secure Software Development: Requirements, Design, and Reuse |
+| [Secure Software Development: Verification and More Specialized Topics](https://www.edx.org/learn/software-engineering/the-linux-foundation-secure-software-development-verification-and-more-specialized-topics) | 7 weeks  | 1-2 hours/week |         Secure Software Development: Implementation          |
 
 ### Advanced math
 
-Courses | Duration | Effort | Prerequisites | Discussion
-:-- | :--: | :--: | :--: | :--:
-[Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab) | - | - | [high school math](https://ossu.dev/precollege-math) | [chat](https://discord.gg/m6wHbP6)
-[Linear Algebra](https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/) | 14 weeks | 12 hours/week | corequisite: Essence of Linear Algebra | [chat](https://discord.gg/k7nSWJH)
-[Introduction to Numerical Methods](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-spring-2019/index.htm)| 14 weeks | 12 hours/week | [Linear Algebra](https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/) | [chat](https://discord.gg/FNEcNNq)
-[Introduction to Formal Logic](https://forallx.openlogicproject.org/) | 10 weeks | 4-8 hours/week | [Set Theory](https://www.youtube.com/playlist?list=PL5KkMZvBpo5AH_5GpxMiryJT6Dkj32H6N) | [chat](https://discord.gg/MbM2Gg5)
-[Probability](https://stat110.hsites.harvard.edu/) | 15 weeks | 5-10 hours/week | [Differentiation and Integration](https://www.edx.org/course/calculus-1b-integration) | [chat](https://discord.gg/UVjs9BU)
+| Courses                                                                                                                                      | Duration |     Effort      |                                        Prerequisites                                        |             Discussion             |
+| :------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :-------------: | :-----------------------------------------------------------------------------------------: | :--------------------------------: |
+| [Essence of Linear Algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)                                        |    -     |        -        |                    [high school math](https://ossu.dev/precollege-math)                     | [chat](https://discord.gg/m6wHbP6) |
+| [Linear Algebra](https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/)                                                  | 14 weeks |  12 hours/week  |                           corequisite: Essence of Linear Algebra                            | [chat](https://discord.gg/k7nSWJH) |
+| [Introduction to Numerical Methods](https://ocw.mit.edu/courses/mathematics/18-335j-introduction-to-numerical-methods-spring-2019/index.htm) | 14 weeks |  12 hours/week  | [Linear Algebra](https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/) | [chat](https://discord.gg/FNEcNNq) |
+| [Introduction to Formal Logic](https://forallx.openlogicproject.org/)                                                                        | 10 weeks | 4-8 hours/week  |   [Set Theory](https://www.youtube.com/playlist?list=PL5KkMZvBpo5AH_5GpxMiryJT6Dkj32H6N)    | [chat](https://discord.gg/MbM2Gg5) |
+| [Probability](https://stat110.hsites.harvard.edu/)                                                                                           | 15 weeks | 5-10 hours/week |    [Differentiation and Integration](https://www.edx.org/course/calculus-1b-integration)    | [chat](https://discord.gg/UVjs9BU) |
 
 ## Final project
 
@@ -412,17 +412,17 @@ Students who would like more guidance in creating a project may choose to use a 
 Here is a sample of options
 (many more are available, at this point you should be capable of identifying a series that is interesting and relevant to you):
 
-Courses | Duration | Effort | Prerequisites
-:-- | :--: | :--: | :--:
-[Fullstack Open](https://fullstackopen.com/en/) | 12 weeks | 15 hours/week | programming
-[Modern Robotics (Specialization)](https://www.coursera.org/specializations/modernrobotics) | 26 weeks | 2-5 hours/week | freshman-level physics, linear algebra, calculus, [linear ordinary differential equations](https://www.khanacademy.org/math/differential-equations)
-[Data Mining (Specialization)](https://www.coursera.org/specializations/data-mining) | 30 weeks | 2-5 hours/week | machine learning
-[Big Data (Specialization)](https://www.coursera.org/specializations/big-data) | 30 weeks | 3-5 hours/week | none
-[Internet of Things (Specialization)](https://www.coursera.org/specializations/internet-of-things) | 30 weeks | 1-5 hours/week | strong programming
-[Cloud Computing (Specialization)](https://www.coursera.org/specializations/cloud-computing) | 30 weeks | 2-6 hours/week | C++ programming
-[Data Science (Specialization)](https://www.coursera.org/specializations/jhu-data-science) | 43 weeks | 1-6 hours/week | none
-[Functional Programming in Scala (Specialization)](https://www.coursera.org/specializations/scala) | 29 weeks | 4-5 hours/week | One year programming experience
-[Game Design and Development with Unity 2020 (Specialization)](https://www.coursera.org/specializations/game-design-and-development) | 6 months | 5 hours/week | programming, interactive design
+| Courses                                                                                                                              | Duration |     Effort     |                                                                    Prerequisites                                                                    |
+| :----------------------------------------------------------------------------------------------------------------------------------- | :------: | :------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [Fullstack Open](https://fullstackopen.com/en/)                                                                                      | 12 weeks | 15 hours/week  |                                                                     programming                                                                     |
+| [Modern Robotics (Specialization)](https://www.coursera.org/specializations/modernrobotics)                                          | 26 weeks | 2-5 hours/week | freshman-level physics, linear algebra, calculus, [linear ordinary differential equations](https://www.khanacademy.org/math/differential-equations) |
+| [Data Mining (Specialization)](https://www.coursera.org/specializations/data-mining)                                                 | 30 weeks | 2-5 hours/week |                                                                  machine learning                                                                   |
+| [Big Data (Specialization)](https://www.coursera.org/specializations/big-data)                                                       | 30 weeks | 3-5 hours/week |                                                                        none                                                                         |
+| [Internet of Things (Specialization)](https://www.coursera.org/specializations/internet-of-things)                                   | 30 weeks | 1-5 hours/week |                                                                 strong programming                                                                  |
+| [Cloud Computing (Specialization)](https://www.coursera.org/specializations/cloud-computing)                                         | 30 weeks | 2-6 hours/week |                                                                   C++ programming                                                                   |
+| [Data Science (Specialization)](https://www.coursera.org/specializations/jhu-data-science)                                           | 43 weeks | 1-6 hours/week |                                                                        none                                                                         |
+| [Functional Programming in Scala (Specialization)](https://www.coursera.org/specializations/scala)                                   | 29 weeks | 4-5 hours/week |                                                           One year programming experience                                                           |
+| [Game Design and Development with Unity 2020 (Specialization)](https://www.coursera.org/specializations/game-design-and-development) | 6 months |  5 hours/week  |                                                           programming, interactive design                                                           |
 
 ## Congratulations
 

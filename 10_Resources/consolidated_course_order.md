@@ -5,6 +5,7 @@ Here is a recommended consolidated order of all the materials:
 **Phase 0:**
 
 * **Harvard CS50** (CS50 is a great starting point to introduce you to computation and problem-solving).
+* **Read *The Imposter's Handbook* series:** Read this in parallel to reinforce CS fundamentals.
 * **Calculus 1A, 1B, and 1C** from OSSU "Core math" (can be done in parallel with other courses to build mathematical maturity).
 
 **Phase 1: Foundational Skills & Initial Freelancing**
@@ -13,7 +14,6 @@ Here is a recommended consolidated order of all the materials:
 * **Freelancing & Project Management:** Complete the courses as listed.
 * **Frontend Projects:** Work on projects to build a portfolio.
 * **Deepen JavaScript & React:** Continue with the more advanced frontend courses.
-* **Read *The Imposter's Handbook* series:** Read this in parallel to reinforce CS fundamentals.
 * **Beginner Frontend Projects from roadmap.sh:** Build components like `Tabs` and `Accordion`.
 * **Systematic Program Design** from OSSU "Core programming".
 
