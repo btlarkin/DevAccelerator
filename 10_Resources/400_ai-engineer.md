@@ -1,7 +1,5 @@
 #ai-engineer
 
-![[ai-engineer.png]]
+<iframe src="https://roadmap.sh/ai-engineer"; height="1000"; width="1000";></iframe>
 
-
-
-[[500_blockchain]]
+[[500_mlops]]

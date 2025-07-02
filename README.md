@@ -9,40 +9,6 @@ Based on a focused 36-week roadmap, real-world deliverables, and a mouseless, te
 
 ---
 
-## 📁 Vault Structure
-DevAccelerator/
-├── README.md
-├── 00_Index.md
-├── 01_Projected_Outcome.md
-├── 02_Curriculum/
-│   ├── Phase1_Foundational.md
-│   ├── Phase2_FullStack-CRC.md
-│   ├── Phase3_DevOps-Capstones.md
-│   └── Phase4_Specialization.md
-├── 03_Timeline.md
-├── 04_Process.md
-├── 05_Packages.md
-├── 06_Business_Model.md
-├── 07_Weekly_Reviews/
-│   └──YYYY-MM-DD.md
-├── 08_Client_Work/
-│   ├── Leads.md
-│   └── Proposals.md
-├── 09_Templates/
-│   ├── Note Frontmatter.md
-│   └── Weekly Review.md
-├── 10_Resources/
-│   ├── tmux3-guide.pdf
-│   ├── mouseless-env.pdf
-│   └── learn-dev-tools.pdf
-├── scripts/
-│   ├── new_project.sh
-│   ├── generate_report.py
-│   └── weekly_log.sh
-└── 00_Roadmap_Kanban.md
-
----
-
 ## 📚 Key Reference Books & Guides
 
 1. **tmux 3: A Practical Guide**

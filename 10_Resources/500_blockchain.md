@@ -1,4 +1,0 @@
-#blockchain
-
-![[blockchain.png]]
-

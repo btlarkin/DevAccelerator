@@ -34,12 +34,33 @@
 ### 5. Continue with OSSU Core CS Topics
 
 * [ ] **[[10_Resources/computer-science/README#Core math|Core math:]]** Complete "Mathematics for Computer Science".
-* [ ] **[[10_Resources/computer-science/README#Core systems|Core systems:]]** Complete the "Nand to Tetris" sequence, "Operating Systems: Three Easy Pieces," and "Computer Networking: a Top-Down Approach"
+* [ ] **[[10_Resources/computer-science/README#Core systems|Core systems:]]** Complete the "Nand to Tetris" sequence, "Operating Systems: Three Easy Pieces," and "Computer Networking: a Top-Down Approach".
 * [ ] **[[10_Resources/computer-science/README|Core theory:]]** Complete the "Algorithms" specialization courses.
-* [ ] **[[10_Resources/computer-science/README#Core programming|Core programming:]]** Complete the remaining courses from the "Core programming" section
-* [ ] **[[10_Resources/computer-science/README#CS Tools|CS Tools:]]** Complete "The Missing Semester of Your CS Education"
-* [ ] **[[10_Resources/computer-science/README#Core security|Core security:]]** Complete the courses on security fundamentals and secure coding
-* [ ] **[[10_Resources/computer-science/README#Core applications|Core applications:]]** Complete the courses on databases, machine learning, computer graphics, and software engineering
-* [ ] **[[10_Resources/computer-science/README#Core ethics|Core ethics:]]** Complete the ethics courses
+* [ ] **[[10_Resources/computer-science/README#Core programming|Core programming:]]** Complete the remaining courses from the "Core programming" section.
+* [ ] **[[10_Resources/computer-science/README#CS Tools|CS Tools:]]** Complete "The Missing Semester of Your CS Education".
+* [ ] **[[10_Resources/computer-science/README#Core security|Core security:]]** Complete the courses on security fundamentals and secure coding.
+* [ ] **[[10_Resources/computer-science/README#Core applications|Core applications:]]** Complete the courses on databases, machine learning, computer graphics, and software engineering.
+* [ ] **[[10_Resources/computer-science/README#Core ethics|Core ethics:]]** Complete the ethics courses.
 
-**Deliverable:** A live Cloud Resume Challenge site, fully showcasing serverless architecture, and foundational backend APIs for a full-stack web application (React + Node.js/ Django) wired to a SQL database.
+### 6. Unified IT Environment Project: Phase 2 Modules
+
+* **Module 2.1: Hybrid Cloud VM Deployment & Basic Networking**
+    * [ ] Deploy an **AWS-like VM** (Ubuntu Server) and an **Azure-like VM** (Windows Server or Ubuntu Server) using VirtualBox.
+    * [ ] Configure basic networking: Ensure all VMs can communicate with each other using Bridged networking.
+    * [ ] Apply initial security measures like firewalls (UFW on Linux, Windows Firewall) to control basic traffic.
+    * [ ] **Tool Focus:** VirtualBox, Ubuntu Server, Windows Server (optional), basic networking (IP addressing, firewall rules).
+* **Module 2.2: Centralized Provisioning & Initial Configuration Management (Foreman+Katello)**
+    * [ ] Deploy a VM and install Foreman+Katello for infrastructure provisioning and lifecycle management.
+    * [ ] Configure Foreman components and register FreeIPA hosts to the Foreman server.
+    * [ ] Set up a DHCP server (e.g., `isc-dhcp-server` or within Foreman) to handle PXE instructions for unattended provisioning.
+    * [ ] Use Foreman to provision an unattended VM (e.g., a new Ubuntu Server instance) and install **Ansible** on it (this will be your Ansible control node).
+    * [ ] **Tool Focus:** VirtualBox, Foreman+Katello, DHCP, PXE boot, Ansible (initial setup).
+* **Module 2.3: Storage & Email Services**
+    * [ ] Provision a VM (using Foreman) and configure it as an **ISCSI target**, then install an **NFS server** for centralized storage.
+    * [ ] Provision another VM (using Foreman) and install an **email server** (e.g., Zimbra, iRedMail, Mailinabox).
+    * [ ] Reconfigure all existing VMs to use the newly provisioned email server for sending notifications and alerts.
+    * [ ] **Tool Focus:** Ansible (for configuration management), ISCSI, NFS, chosen email server software.
+
+**Deliverable:** A live Cloud Resume Challenge site, fully showcasing serverless architecture, and foundational backend APIs for a full-stack web application (React + Node.js/ Django) wired to a SQL database. Your hybrid VM setup is complete, Foreman+Katello is configured for provisioning, and core storage/email services are operational.
+
+[[Phase3_DevOps]]
