@@ -11,14 +11,12 @@
             "id": "e5fb48b64b35d6c3",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "02_Curriculum/Phase3_DevOps.md",
-                "mode": "preview",
-                "source": false
+                "file": "10_Resources/learning_library/Building your Mouseless Development Environment.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Phase3_DevOps"
+              "icon": "lucide-file-text",
+              "title": "Building your Mouseless Development Environment"
             }
           }
         ]
@@ -78,7 +76,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "f75d78026d5cda2c",
@@ -187,9 +186,14 @@
   },
   "active": "e5fb48b64b35d6c3",
   "lastOpenFiles": [
+    "02_Curriculum/Phase3_DevOps.md",
+    "scripts/install_user.sh",
+    "scripts/install_sys.sh",
+    "scripts/install_chroot.sh",
+    "scripts/install_apps.sh",
+    "scripts/apps.csv",
     "02_Curriculum/Phase2_Fullstack.md",
     "10_Resources/learning_library/The Cloud Resume Challenge Guidebook - Azure Edition.pdf",
-    "02_Curriculum/Phase3_DevOps.md",
     "02_Curriculum/Phase4_Specialization.md",
     "scripts/devctl",
     "02_Curriculum/Phase1_Foundation.md",
@@ -217,14 +221,9 @@
     "10_Resources/images/guides/torrent-client/message.png",
     "10_Resources/images/guides/torrent-client",
     "10_Resources/images/guides/basic-authentication",
-    "10_Resources/images/guides/backend-languages",
-    "10_Resources/images/guides",
     "10_Resources/roadmaps-original/backend/content/basic-authentication@yRiJgjjv2s1uV9vgo3n8m.md",
     "10_Resources/consolidated_course_order.md",
     "10_Resources/updated_plan.md",
-    "10_Resources/learning_library/The Cloud Resume Challenge Guidebook - AWS Edition.pdf",
-    "10_Resources/learning_library/mysqlcrashcourse.pdf",
-    "10_Resources/learning_library/The Complete Developer. Master the Full Stack with...2024.pdf",
     "10_Resources/projects/multi-container-service.md",
     "10_Resources/projects/multiservice-docker.md",
     "10_Resources/computer-science/coursepages/spd/README.md",
