@@ -1,0 +1,704 @@
+#!/usr/bin/env bash
+set -euo pipefail
+trap 'echo "Error in devctl at line $LINENO"; exit 1' ERR
+
+# Default config (override via --config or env)
+DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
+LOG_DIR="${LOG_DIR:-$HOME/.local/state/devctl}"
+CONFIG_FILE=""  # optional global config
+
+mkdir -p "$LOG_DIR"
+
+usage() {
+  cat <<EOF
+Usage: devctl <command> [<args>]
+
+Commands:
+  bootstrap os         Partition & install base Arch system
+  bootstrap chroot     Configure chroot (bootloader, locale, users)
+  bootstrap apps       Install package groups from manifest
+  bootstrap dotfiles   Sync your dotfiles into \$XDG_CONFIG_HOME
+  user setup           Install AUR helper and user-level dotfiles/scripts
+  project new <Title>  Scaffold a new project
+  project launch       Launch tmuxp session for current project
+
+Global Flags:
+  --dry-run            Print commands without executing
+  --force              Overwrite existing targets (projects, configs)
+  -h|--help            Show this message
+
+EOF
+  exit 1
+}
+
+# Dry-run wrapper
+run() {
+  if [[ "${DRY_RUN:-false}" == true ]]; then
+    echo "[DRY] $*"
+  else
+    "$@"
+  fi
+}
+
+# Parse global flags
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --dry-run) DRY_RUN=true; shift ;;
+    --force)   FORCE=true; shift ;;
+    -h|--help) usage ;;
+    *) break ;;
+  esac
+done
+
+# ──────────────────────────────────────────────────────────────────────────────
+# devctl_bootstrap_os: Partition & install base Arch system
+# ──────────────────────────────────────────────────────────────────────────────
+devctl_bootstrap_os() {
+  local log="$LOG_DIR/bootstrap_os.log"
+  mkdir -p "$(dirname "$log")"
+  echo "[$(date +'%F %T')] Starting OS bootstrap" | tee "$log"
+
+  # 1. Dependency checks
+  local deps=(dialog timedatectl lsblk fdisk partprobe pacstrap genfstab arch-chroot)
+  for cmd in "${deps[@]}"; do
+    if ! command -v "$cmd" &>/dev/null; then
+      echo "Error: '$cmd' is required but not installed." | tee -a "$log"
+      return 1
+    fi
+  done
+
+  # 2. Enable NTP
+  run timedatectl set-ntp true       2>&1 | tee -a "$log"
+
+  # 3. Confirm destructive action (unless forced)
+  if [[ "${FORCE:-false}" != true ]]; then
+    dialog --defaultno --title "Confirm OS Install" \
+      --yesno "This will DESTROY everything on your chosen disk.\n\nProceed?" 15 60 \
+      || { echo "User aborted." | tee -a "$log"; return 1; }
+  fi
+
+  # 4. Set hostname
+  run dialog --no-cancel --inputbox \
+    "Enter hostname for this machine:" 10 60 2> /tmp/devctl_hostname
+  HOSTNAME=$(< /tmp/devctl_hostname); rm /tmp/devctl_hostname
+  echo "$HOSTNAME" | run tee /etc/hostname 2>>"$log"
+
+  # 5. Detect UEFI
+  local uefi=0
+  [[ -d /sys/firmware/efi/efivars ]] && uefi=1
+  echo "UEFI mode: $uefi" | tee -a "$log"
+
+  # 6. Choose target disk
+  mapfile -t devices < <(
+    lsblk -dno NAME,SIZE,TYPE | awk '$3=="disk"{print "/dev/"$1,"("$2")"}'
+  )
+  run dialog --no-cancel --radiolist \
+    "Select install target disk (ALL DATA WILL BE LOST):" \
+    15 60 4 \
+    "${devices[@]}" 2> /tmp/devctl_disk
+  DISK=$(< /tmp/devctl_disk); rm /tmp/devctl_disk
+  echo "Target disk: $DISK" | tee -a "$log"
+
+  # 7. Swap size
+  run dialog --no-cancel --inputbox \
+    "Swap size in GiB (default: 8):" 10 60 2> /tmp/devctl_swap
+  local swap_size=${DRY_RUN:-false}; swap_size=$(< /tmp/devctl_swap); rm /tmp/devctl_swap
+  [[ "$swap_size" =~ ^[0-9]+$ ]] || swap_size=8
+  echo "Swap: ${swap_size}GiB" | tee -a "$log"
+
+  # 8. Optional disk wipe method
+  run dialog --no-cancel --menu \
+    "Wipe method for $DISK:" 15 60 4 \
+      1 "dd (fast)" \
+      2 "shred (secure)" \
+      3 "skip wipe" 2> /tmp/devctl_wipe
+  local wipe_method=$(< /tmp/devctl_wipe); rm /tmp/devctl_wipe
+  case $wipe_method in
+    1) run dd if=/dev/zero of="$DISK" status=progress 2>&1 \
+         | dialog --title "Wiping $DISK" --progressbox --stdout 20 60 ;;
+    2) run shred -v "$DISK" \
+         | dialog --title "Shredding $DISK" --progressbox --stdout 20 60 ;;
+    3) echo "Skipping wipe" | tee -a "$log" ;;
+  esac
+
+  # 9. Partition with fdisk (GPT: boot, swap, root)
+  run partprobe "$DISK"
+  run fdisk "$DISK" <<EOF  2>&1 | tee -a "$log"
+g
+n
+
+
++512M
+t
+$([[ $uefi -eq 1 ]] && echo 1 || echo 4)
+n
+
+
++${swap_size}G
+n
+
+
+
+w
+EOF
+  run partprobe "$DISK"
+
+  # 10. Format & mount
+  local part_prefix="$DISK"
+  [[ $DISK =~ nvme ]] && part_prefix="${DISK}p"
+  run mkfs.ext4 "${part_prefix}3"                         2>&1 | tee -a "$log"
+  run mkswap "${part_prefix}2"                            2>&1 | tee -a "$log"
+  run swapon "${part_prefix}2"                            2>&1 | tee -a "$log"
+  run mount "${part_prefix}3" /mnt                        2>&1 | tee -a "$log"
+
+  if [[ $uefi -eq 1 ]]; then
+    run mkfs.fat -F32 "${part_prefix}1"                   2>&1 | tee -a "$log"
+    run mkdir -p /mnt/boot/efi
+    run mount "${part_prefix}1" /mnt/boot/efi            2>&1 | tee -a "$log"
+  fi
+
+  # 11. Base system install
+  run pacstrap /mnt base base-devel linux linux-firmware       2>&1 | tee -a "$log"
+  run genfstab -U /mnt >> /mnt/etc/fstab                      2>&1 | tee -a "$log"
+
+  # 12. Persist state for chroot
+  echo "$uefi" > /mnt/var_uefi
+  echo "$DISK" > /mnt/var_hd
+  echo "$HOSTNAME" > /mnt/comp
+
+  # 13. Chain into chroot config
+  run curl -fsSL https://raw.githubusercontent.com/btlarkin/arch_installer/main/install_chroot.sh \
+    -o /mnt/install_chroot.sh             2>&1 | tee -a "$log"
+  run arch-chroot /mnt bash /install_chroot.sh                2>&1 | tee -a "$log"
+
+  # 14. Clean up and reboot prompt
+  run rm /mnt/var_uefi /mnt/var_hd /mnt/comp /mnt/install_chroot.sh
+  dialog --title "Installation Complete" --yesno \
+    "Base system installed. Reboot now?" 10 60 || return 0
+  run reboot
+}
+
+# End of devctl_bootstrap_os
+
+# ──────────────────────────────────────────────────────────────────────────────
+# devctl_bootstrap_chroot: Configure chroot (bootloader, locale, users)
+# ──────────────────────────────────────────────────────────────────────────────
+devctl_bootstrap_chroot() {
+  local log="$LOG_DIR/bootstrap_chroot.log"
+  mkdir -p "$(dirname "$log")"
+  echo "[$(date +'%F %T')] Starting chroot configuration" | tee "$log"
+
+  # 1. Dependencies
+  local deps=(dialog pacman grub grub-mkconfig hwclock locale-gen chpasswd useradd)
+  for cmd in "${deps[@]}"; do
+    if ! command -v "$cmd" &>/dev/null; then
+      echo "Error: missing dependency '$cmd'" | tee -a "$log"
+      return 1
+    fi
+  done
+
+  # 2. Load persisted values (should be run inside the new root)
+  if [[ -f /var_uefi && -f /var_hd && -f /comp ]]; then
+    local uefi=$(< /var_uefi)
+    local hd=$(< /var_hd)
+    # hostname file was written as /comp by bootstrap_os
+    run tee /etc/hostname < /comp           2>>"$log"
+    rm /comp
+    echo "Loaded UEFI=$uefi, disk=$hd" | tee -a "$log"
+  else
+    echo "Error: /var_uefi, /var_hd, or /comp missing. Are you in a fresh chroot?" | tee -a "$log"
+    return 1
+  fi
+
+  # 3. Install essential packages
+  run pacman -Sy --noconfirm dialog grub               2>&1 | tee -a "$log"
+
+  # 4. Install GRUB
+  if [[ "$uefi" -eq 1 ]]; then
+    run pacman -S --noconfirm efibootmgr               2>&1 | tee -a "$log"
+    run grub-install --target=x86_64-efi \
+      --bootloader-id=GRUB --efi-directory=/boot/efi   2>&1 | tee -a "$log"
+  else
+    run grub-install "$hd"                             2>&1 | tee -a "$log"
+  fi
+  run grub-mkconfig -o /boot/grub/grub.cfg             2>&1 | tee -a "$log"
+
+  # 5. System clock and timezone
+  run hwclock --systohc                               2>&1 | tee -a "$log"
+  run ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+  echo "TZ=America/Chicago" > /etc/timezone           2>&1 | tee -a "$log"
+
+  # 6. Locale setup
+  # Ensure no duplicates
+  grep -qxF "en_US.UTF-8 UTF-8" /etc/locale.gen || echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+  run locale-gen                                      2>&1 | tee -a "$log"
+  echo "LANG=en_US.UTF-8" > /etc/locale.conf          2>&1 | tee -a "$log"
+
+  # 7. User creation helper
+  config_user() {
+    local username="$1"
+    local prompt="${2:-Enter password for $username}"
+    # ask for password twice
+    run dialog --no-cancel --passwordbox "$prompt:" 10 60 2> /tmp/devctl_pass1
+    run dialog --no-cancel --passwordbox "Confirm password:" 10 60 2> /tmp/devctl_pass2
+    while ! diff /tmp/devctl_pass1 /tmp/devctl_pass2 &>/dev/null; do
+      run dialog --no-cancel --passwordbox "Passwords differ—try again:" 10 60 2> /tmp/devctl_pass1
+      run dialog --no-cancel --passwordbox "Confirm:" 10 60 2> /tmp/devctl_pass2
+    done
+    local pass=$(< /tmp/devctl_pass1)
+    rm /tmp/devctl_pass1 /tmp/devctl_pass2
+
+    if ! id "$username" &>/dev/null; then
+      run useradd -m -g wheel -s /bin/bash "$username"
+      echo "Created user $username" | tee -a "$log"
+    fi
+    echo "$username:$pass" | run chpasswd       2>&1 | tee -a "$log"
+  }
+
+  # 8. Set root password
+  echo "Setting root password…" | tee -a "$log"
+  run dialog --title "Root Password" --msgbox "You will now set the root password." 8 50
+  config_user root "Enter NEW root password"
+
+  # 9. Create a non-root user
+  echo "Creating a normal user…" | tee -a "$log"
+  run dialog --title "New User" --msgbox "Let’s create your regular user." 8 50
+  run dialog --no-cancel --inputbox "Enter your username:" 8 50 2> /tmp/devctl_user
+  local newuser=$(< /tmp/devctl_user); rm /tmp/devctl_user
+  config_user "$newuser"
+  # Save for later steps
+  echo "$newuser" > /tmp/devctl_user_name
+
+  # 10. Grant sudo rights if not present
+  if ! grep -qxF '%wheel ALL=(ALL) ALL' /etc/sudoers; then
+    echo '%wheel ALL=(ALL) ALL' >> /etc/sudoers
+  fi
+
+  # 11. Chain into apps installation
+  run dialog --title "Install Apps" --yesno \
+    "Would you like to install packages and dotfiles now?" 10 60 \
+    && run devctl bootstrap apps
+
+  echo "Chroot configuration complete." | tee -a "$log"
+}
+
+# End of devctl_bootstrap_chroot
+
+# ──────────────────────────────────────────────────────────────────────────────
+# devctl_bootstrap_apps: Install package groups from manifest (pacman only)
+# ──────────────────────────────────────────────────────────────────────────────
+devctl_bootstrap_apps() {
+  local log="$LOG_DIR/bootstrap_apps.log"
+  mkdir -p "$(dirname "$log")"
+  echo "[$(date +'%F %T')] Starting package installation" | tee "$log"
+
+  # 1. Dependencies
+  local deps=(dialog pacman awk)
+  for cmd in "${deps[@]}"; do
+    if ! command -v "$cmd" &>/dev/null; then
+      echo "Error: '$cmd' is required but missing." | tee -a "$log"
+      return 1
+    fi
+  done
+
+  # 2. Locate manifest
+  local manifest="${APPS_MANIFEST:-$VAULT_ROOT/apps.csv}"
+  if [[ ! -r "$manifest" ]]; then
+    echo "Error: apps manifest not found at $manifest" | tee -a "$log"
+    return 1
+  fi
+  echo "Using manifest: $manifest" | tee -a "$log"
+
+  # 3. Build group list for dialog
+  mapfile -t groups < <(tail -n +2 "$manifest" | awk -F, '{print $1}' | sort -u)
+  local dialog_args=()
+  for grp in "${groups[@]}"; do
+    # grab first description for this group
+    local desc
+    desc=$(awk -F, -v g="$grp" 'NR>1 && $1==g {print $3; exit}' "$manifest")
+    dialog_args+=("$grp" "$desc" "on")
+  done
+
+  # 4. Prompt user for groups
+  run dialog --title "Package Groups" --checklist \
+    "Select which package groups to install:" \
+    15 60 8 \
+    "${dialog_args[@]}" 2> /tmp/devctl_apps_sel
+
+  local sel
+  sel=$(< /tmp/devctl_apps_sel)
+  rm /tmp/devctl_apps_sel
+  echo "Selected groups: $sel" | tee -a "$log"
+
+  # 5. Collect packages
+  local pkg_list=()
+  while IFS=, read -r grp pkg desc; do
+    for g in $sel; do
+      [[ "$grp" == "$g" ]] && pkg_list+=("$pkg")
+    done
+  done < <(tail -n +2 "$manifest")
+
+  if [[ ${#pkg_list[@]} -eq 0 ]]; then
+    echo "No packages selected. Exiting." | tee -a "$log"
+    return 0
+  fi
+
+  echo "Packages to install: ${pkg_list[*]}" | tee -a "$log"
+
+  # 6. Sync & install
+  run pacman -Sy --noconfirm                          2>&1 | tee -a "$log"
+  run pacman -S --noconfirm --needed "${pkg_list[@]}" 2>&1 | tee -a "$log"
+
+  echo "Package installation complete." | tee -a "$log"
+}
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ──────────────────────────────────────────────────────────────────────────────
+# devctl_bootstrap_dotfiles: Symlink your dotfiles into $XDG_CONFIG_HOME/$XDG_DATA_HOME
+# ──────────────────────────────────────────────────────────────────────────────
+devctl_bootstrap_dotfiles() {
+  local log="$LOG_DIR/bootstrap_dotfiles.log"
+  mkdir -p "$(dirname "$log")"
+  echo "[$(date +'%F %T')] Starting dotfiles sync" | tee "$log"
+
+  # 1. Dependencies
+  local deps=(ln mkdir curl git)
+  for cmd in "${deps[@]}"; do
+    if ! command -v "$cmd" &>/dev/null; then
+      echo "Error: missing '$cmd'" | tee -a "$log"
+      return 1
+    fi
+  done
+
+  # 2. Define paths (allow overrides)
+  local XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+  local XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+  local DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+
+  echo "Using DOTFILES=$DOTFILES" | tee -a "$log"
+
+  # 3. Backup helper
+  backup() {
+    if [[ -e $1 && ! -L $1 ]]; then
+      run mv "$1" "$1.bak"
+      echo "Backed up $1 to $1.bak" | tee -a "$log"
+    fi
+  }
+
+  # 4. Neovim setup
+  echo "Syncing Neovim config…" | tee -a "$log"
+  run mkdir -p "$XDG_CONFIG_HOME/nvim" "$XDG_CONFIG_HOME/state/nvim/undo"
+  backup "$XDG_CONFIG_HOME/nvim/init.vim"
+  run ln -sf "$DOTFILES/nvim/init.vim" "$XDG_CONFIG_HOME/nvim/init.vim"
+  # Plugin manager
+  local plug="$DOTFILES/nvim/autoload/plug.vim"
+  if [[ ! -f "$plug" ]]; then
+    run curl -fsLo "$plug" --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  fi
+  run mkdir -p "$XDG_CONFIG_HOME/nvim/autoload"
+  backup "$XDG_CONFIG_HOME/nvim/autoload/plug.vim"
+  run ln -sf "$plug" "$XDG_CONFIG_HOME/nvim/autoload/plug.vim"
+  # Install/update plugins
+  run nvim --noplugin +PlugUpdate +qa                   2>&1 | tee -a "$log"
+
+  # 5. X11, i3, Dunst, tmux, Git, Zsh, Fonts
+  for section in X11 i3 dunst tmux git; do
+    echo "Syncing $section…" | tee -a "$log"
+    run backup "$XDG_CONFIG_HOME/$section"
+    run ln -sf "$DOTFILES/$section" "$XDG_CONFIG_HOME/$section"
+  done
+
+  # Zsh (shell env & rc)
+  echo "Syncing Zsh…" | tee -a "$log"
+  run mkdir -p "$XDG_CONFIG_HOME/zsh"
+  backup "$HOME/.zshenv"
+  run ln -sf "$DOTFILES/zsh/.zshenv" "$HOME/.zshenv"
+  for file in .zshrc aliases external; do
+    backup "$XDG_CONFIG_HOME/zsh/$file"
+    run ln -sf "$DOTFILES/zsh/$file" "$XDG_CONFIG_HOME/zsh/$file"
+  done
+
+  # Fonts
+  echo "Installing fonts…" | tee -a "$log"
+  run mkdir -p "$XDG_DATA_HOME/fonts"
+  run cp -rf "$DOTFILES/fonts/." "$XDG_DATA_HOME/fonts/"
+  fc-cache -fv                                    2>&1 | tee -a "$log"
+
+  echo "Dotfiles sync complete." | tee -a "$log"
+}
+
+# ──────────────────────────────────────────────────────────────────────────────
+# devctl_user_setup: Install AUR helper, sync dotfiles, clone DevAccelerator, link scripts
+# ──────────────────────────────────────────────────────────────────────────────
+devctl_user_setup() {
+  local log="$LOG_DIR/user_setup.log"
+  mkdir -p "$(dirname "$log")"
+  echo "[$(date +'%F %T')] Starting user setup" | tee "$log"
+
+  # 1. Dependencies
+  local deps=(git curl sudo dialog)
+  for cmd in "${deps[@]}"; do
+    if ! command -v "$cmd" &>/dev/null; then
+      echo "Error: '$cmd' is required but missing." | tee -a "$log"
+      return 1
+    fi
+  done
+
+  # 2. Create standard user dirs
+  echo "Creating ~/Documents and ~/Downloads…" | tee -a "$log"
+  run mkdir -p "$HOME/Documents" "$HOME/Downloads"
+
+  # 3. Install AUR helper (yay)
+  if ! command -v yay &>/dev/null; then
+    echo "Installing yay (AUR helper)..." | tee -a "$log"
+    # Ensure base-devel and git
+    run sudo pacman -S --noconfirm --needed base-devel git    2>&1 | tee -a "$log"
+    run git clone https://aur.archlinux.org/yay.git /tmp/yay   2>&1 | tee -a "$log"
+    pushd /tmp/yay >/dev/null
+      run makepkg --noconfirm -si                               2>&1 | tee -a "$log"
+    popd  >/dev/null
+    run rm -rf /tmp/yay
+  else
+    echo "yay already installed" | tee -a "$log"
+  fi
+
+  # 4. Sync dotfiles
+  local DOTFILES="${DOTFILES:-$HOME/dotfiles}"
+  if [[ ! -d "$DOTFILES" ]]; then
+    echo "Cloning dotfiles to $DOTFILES…" | tee -a "$log"
+    run git clone https://github.com/btlarkin/dotfiles.git "$DOTFILES"
+  else
+    echo "Updating dotfiles…" | tee -a "$log"
+    run git -C "$DOTFILES" pull                          2>&1 | tee -a "$log"
+  fi
+
+  echo "Bootstrapping dotfiles…" | tee -a "$log"
+  run devctl bootstrap dotfiles                           2>&1 | tee -a "$log"
+
+  # 5. Clone DevAccelerator vault
+  local VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
+  if [[ ! -d "$VAULT_ROOT" ]]; then
+    echo "Cloning DevAccelerator to $VAULT_ROOT…" | tee -a "$log"
+    run mkdir -p "$(dirname "$VAULT_ROOT")"
+    run git clone https://github.com/btlarkin/DevAccelerator.git "$VAULT_ROOT"
+  else
+    echo "Updating DevAccelerator…" | tee -a "$log"
+    run git -C "$VAULT_ROOT" pull                       2>&1 | tee -a "$log"
+  fi
+
+  # 6. Link legacy project scripts (optional)
+  for script in new_project.sh launch_project.sh; do
+    if [[ -f "$VAULT_ROOT/scripts/$script" ]]; then
+      echo "Linking $script to /usr/local/bin…" | tee -a "$log"
+      run sudo ln -sf "$VAULT_ROOT/scripts/$script" /usr/local/bin/"${script%.*}"
+    fi
+  done
+
+  echo "User setup complete." | tee -a "$log"
+}
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ──────────────────────────────────────────────────────────────────────────────
+# devctl_project_new: Scaffold & register a new project end-to-end
+# ──────────────────────────────────────────────────────────────────────────────
+devctl_project_new() {
+  local log="$LOG_DIR/project_new.log"
+  mkdir -p "$(dirname "$log")"
+  echo "[$(date +'%F %T')] Starting new project scaffold" | tee "$log"
+
+  # 1. Argument check
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: devctl project new \"<Project Title>\"" | tee -a "$log"
+    return 1
+  fi
+
+  # 2. Define paths (override via env if needed)
+  local TITLE="$1"
+  local VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
+  local TEMPLATE_DIR="${TEMPLATE_DIR:-$VAULT_ROOT/11_Project_Templates/VanillaWebProject}"
+  local PROJECTS_DIR="${PROJECTS_DIR:-$HOME/projects}"
+  local OBS_NOTE_DIR="${OBSIDIAN_NOTE_DIR:-$VAULT_ROOT/03_Projects}"
+  local KANBAN_FILE="${KANBAN_FILE:-$VAULT_ROOT/00_Roadmap_Kanban.md}"
+  local OBS_CMD="${OBS_CMD:-obsidian}"
+
+  # 3. Compute slug and paths
+  local SLUG
+  SLUG=$(echo "$TITLE" \
+    | tr '[:upper:]' '[:lower:]' \
+    | sed -E 's/[^a-z0-9]+/-/g; s/^-|-$//g')
+  local PROJECT_PATH="$PROJECTS_DIR/$SLUG"
+  local NOTE_PATH="$OBS_NOTE_DIR/$SLUG.md"
+
+  echo "Project Title: $TITLE" | tee -a "$log"
+  echo "Slug: $SLUG" | tee -a "$log"
+  echo "Project Path: $PROJECT_PATH" | tee -a "$log"
+  echo "Note Path: $NOTE_PATH" | tee -a "$log"
+
+  # 4. Handle existing directory
+  if [[ -d "$PROJECT_PATH" ]]; then
+    if [[ "${FORCE:-false}" == true ]]; then
+      run rm -rf "$PROJECT_PATH"
+    else
+      echo "Error: $PROJECT_PATH already exists. Use --force to overwrite." | tee -a "$log"
+      return 1
+    fi
+  fi
+
+  # 5. Copy template & initialize git
+  run mkdir -p "$PROJECTS_DIR"
+  run cp -r "$TEMPLATE_DIR" "$PROJECT_PATH"
+  pushd "$PROJECT_PATH" >/dev/null
+    run rm -rf .git
+    run git init                                     2>&1 | tee -a "$log"
+    run git add .                                    2>&1 | tee -a "$log"
+    run git commit -m "chore: scaffold project '$TITLE'" 2>&1 | tee -a "$log"
+  popd >/dev/null
+
+  # 6. Create Obsidian note
+  run mkdir -p "$OBS_NOTE_DIR"
+  run cat > "$NOTE_PATH" <<EOF
+---
+title: "$TITLE"
+date: $(date +'%F')
+tags: [project]
+slug: $SLUG
+---
+
+# $TITLE
+
+> Scaffolded on $(date +'%F').
+
+## Overview
+
+## Tasks
+
+- [ ] Kickoff meeting
+- [ ] …
+EOF
+  echo "Created note at $NOTE_PATH" | tee -a "$log"
+
+  # 7. Update Kanban
+  if ! grep -qxF "- [ ] $TITLE" "$KANBAN_FILE"; then
+    run echo "- [ ] $TITLE" >> "$KANBAN_FILE"
+    echo "Added to Kanban: $KANBAN_FILE" | tee -a "$log"
+  else
+    echo "Kanban entry already exists." | tee -a "$log"
+  fi
+
+  # 8. Open note in Obsidian (background)
+  run $OBS_CMD "$NOTE_PATH" &>/dev/null &
+  echo "Opened note in Obsidian." | tee -a "$log"
+
+  echo "Project '$TITLE' scaffold complete." | tee -a "$log"
+}
+# ──────────────────────────────────────────────────────────────────────────────
+
+# ──────────────────────────────────────────────────────────────────────────────
+# devctl_project_launch: Launch or attach a tmuxp session for the current project
+# ──────────────────────────────────────────────────────────────────────────────
+devctl_project_setup() {
+  local log="$LOG_DIR/project_setup.log"; mkdir -p "$(dirname "$log")"
+  echo "[$(date)] Installing project deps…" | tee "$log"
+
+  # If there's a package.json, install local deps
+  if [[ -f package.json ]]; then
+    run npm install            2>&1 | tee -a "$log"
+  fi
+
+  # Ensure browser-sync is globally available
+  if ! command -v browser-sync &>/dev/null; then
+    echo "Installing browser-sync globally…" | tee -a "$log"
+    run npm install -g browser-sync &>>"$log"
+  fi
+
+  echo "Project setup complete." | tee -a "$log"
+}
+
+devctl_project_launch() {
+  local log="$LOG_DIR/project_launch.log"
+  mkdir -p "$(dirname "$log")"
+  echo "[$(date +'%F %T')] Starting tmuxp session launch" | tee "$log"
+
+  # 1. Determine session name (override with env if needed)
+  local SESSION="${PROJECT_NAME:-$(basename "$PWD")}"
+  echo "Session name: $SESSION" | tee -a "$log"
+
+  # 2. Locate tmuxp config (YAML or JSON)
+  local config
+  for f in .tmuxp.yaml .tmuxp.yml .tmuxp.json; do
+    [[ -r "$PWD/$f" ]] && { config="$PWD/$f"; break; }
+  done
+  if [[ -z "${config:-}" ]]; then
+    echo "Error: no tmuxp config (.tmuxp.yaml/.yml/.json) in $PWD" | tee -a "$log"
+    return 1
+  fi
+  echo "Using config: $config" | tee -a "$log"
+
+  # 3. Ensure tmux server is running
+  if ! tmux info &>/dev/null; then
+    echo "No tmux server; starting one." | tee -a "$log"
+    run tmux start-server                         2>&1 | tee -a "$log"
+    sleep 0.5
+  fi
+
+  # 4. If session exists, attach and exit
+  if tmux has-session -t "$SESSION" 2>/dev/null; then
+    echo "Attaching to existing session: $SESSION" | tee -a "$log"
+    run tmux attach-session -t "$SESSION"         2>&1 | tee -a "$log"
+    return 0
+  fi
+
+  # 5. Load new tmuxp session (detached)
+  echo "Loading session from config." | tee -a "$log"
+  run tmuxp load -y -d -s "$SESSION" "$config"   2>&1 | tee -a "$log"
+
+  # 6. Attach or switch client
+  if [[ -z "${TMUX:-}" ]]; then
+    echo "Attaching to new session: $SESSION" | tee -a "$log"
+    run tmux attach-session -t "$SESSION"       2>&1 | tee -a "$log"
+  else
+    echo "Switching client to: $SESSION" | tee -a "$log"
+    run tmux switch-client -t "$SESSION"        2>&1 | tee -a "$log"
+  fi
+
+  echo "Session launch complete." | tee -a "$log"
+}
+# ──────────────────────────────────────────────────────────────────────────────
+
+# Dispatch
+cmd="$1"; shift || usage
+case "$cmd" in
+  bootstrap)
+    sub="$1"; shift || usage
+    case "$sub" in
+      os)       devctl_bootstrap_os "$@" ;;
+      chroot)   devctl_bootstrap_chroot "$@" ;;
+      apps)     devctl_bootstrap_apps "$@" ;;
+      dotfiles) devctl_bootstrap_dotfiles "$@" ;;
+      *)        usage ;;
+    esac
+    ;;
+  user)
+    [[ "$1" == setup ]] || usage
+    shift; devctl_user_setup "$@" ;;
+  project)
+    sub="$1"; shift || usage
+    case "$sub" in
+      new)    devctl_project_new "$@" ;;
+      launch) devctl_project_launch ;;
+      *)      usage ;;
+    esac
+    ;;
+  project)
+    case "$2" in
+      new)    devctl_project_new "${@:3}" ;;
+      setup)  devctl_project_setup ;;
+      launch) devctl_project_launch ;;
+    esac
+    ;;
+
+  *) usage ;;
+esac
+

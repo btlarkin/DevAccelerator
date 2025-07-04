@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "02_Curriculum/Phase4_Specialization.md",
-                "mode": "source",
+                "file": "02_Curriculum/Phase3_DevOps.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Phase4_Specialization"
+              "title": "Phase3_DevOps"
             }
           }
         ]
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "f75d78026d5cda2c",
@@ -188,13 +187,15 @@
   },
   "active": "e5fb48b64b35d6c3",
   "lastOpenFiles": [
-    "02_Curriculum/Phase3_DevOps.md",
     "02_Curriculum/Phase2_Fullstack.md",
+    "10_Resources/learning_library/The Cloud Resume Challenge Guidebook - Azure Edition.pdf",
+    "02_Curriculum/Phase3_DevOps.md",
+    "02_Curriculum/Phase4_Specialization.md",
+    "scripts/devctl",
     "02_Curriculum/Phase1_Foundation.md",
     "02_Curriculum/Phase0_Primer.md",
     "README.md",
     "Untitled.md",
-    "02_Curriculum/Phase4_Specialization.md",
     "00_Index.md",
     "10_Resources/lark_self_environment.md",
     "10_Resources/400_ai-engineer.md",
@@ -227,12 +228,9 @@
     "10_Resources/projects/multi-container-service.md",
     "10_Resources/projects/multiservice-docker.md",
     "10_Resources/computer-science/coursepages/spd/README.md",
-    "10_Resources/learning_library/Linux Basics For Hackers.pdf",
     "10_Resources/computer-science/README.md",
     "10_Resources/roadmaps-original/design-system/design-system.md",
     "10_Resources/computer-science/extras/readings.md",
-    "10_Resources/computer-science/extras/courses.md",
-    "10_Resources/computer-science/coursepages/intro-cs/README.md",
-    "10_Resources/computer-science/_config.yml"
+    "10_Resources/computer-science/extras/courses.md"
   ]
 }

@@ -21,7 +21,10 @@
 
 * [ ] **[The Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/)**
 * [ ] **[[The Cloud Resume Challenge Guidebook - AWS Edition.pdf|The Cloud Resume Challenge Guidebook - AWS Edition]]**
-* [ ] **Action:** Build a serverless resume website using S3, Lambda, API Gateway, and DynamoDB to demonstrate practical cloud skills and serverless architecture.
+* [ ] **[The Cloud Resume Challenge - Azure Edition](https://cloudresumechallenge.dev/docs/the-challenge/azure/)** 
+* [ ] **[[The Cloud Resume Challenge Guidebook - Azure Edition.pdf|The Cloud Resume Challenge Guidebook - Azure Edition]]**
+* [ ] **Action:** Build a serverless resume website using S3, Lambda, API Gateway, and DynamoDB (AWS), AND a version using Azure Functions, Azure Cosmos DB, and Azure API Management, to demonstrate practical multi-cloud skills and serverless architecture.
+
 
 ### 4. Full-Stack Project Clusters
 
