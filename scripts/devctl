@@ -687,18 +687,11 @@ case "$cmd" in
     sub="$1"; shift || usage
     case "$sub" in
       new)    devctl_project_new "$@" ;;
+      setup)  devctl_project_setup ;;
       launch) devctl_project_launch ;;
       *)      usage ;;
     esac
     ;;
-  project)
-    case "$2" in
-      new)    devctl_project_new "${@:3}" ;;
-      setup)  devctl_project_setup ;;
-      launch) devctl_project_launch ;;
-    esac
-    ;;
-
   *) usage ;;
 esac
 
