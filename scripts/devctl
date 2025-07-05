@@ -4,7 +4,7 @@ trap 'echo "Error in devctl at line $LINENO"; exit 1' ERR
 
 # Default config (override via --config or env)
 DOTFILES="${DOTFILES:-$HOME/dotfiles}"
-VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
+VAULT_ROOT="${VAULT_ROOT:-$HOME/opt/DevAccelerator}"
 LOG_DIR="${LOG_DIR:-$HOME/.local/state/devctl}"
 CONFIG_FILE=""  # optional global config
 
@@ -303,7 +303,7 @@ devctl_bootstrap_apps() {
   done
 
   # 2. Locate manifest
-  local manifest="${APPS_MANIFEST:-$VAULT_ROOT/apps.csv}"
+  local manifest="${APPS_MANIFEST:-$VAULT_ROOT/scripts/apps.csv}"
   if [[ ! -r "$manifest" ]]; then
     echo "Error: apps manifest not found at $manifest" | tee -a "$log"
     return 1
@@ -478,7 +478,7 @@ devctl_user_setup() {
   run devctl bootstrap dotfiles                           2>&1 | tee -a "$log"
 
   # 5. Clone DevAccelerator vault
-  local VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
+  local VAULT_ROOT="${VAULT_ROOT:-$HOME/opt/DevAccelerator}"
   if [[ ! -d "$VAULT_ROOT" ]]; then
     echo "Cloning DevAccelerator to $VAULT_ROOT…" | tee -a "$log"
     run mkdir -p "$(dirname "$VAULT_ROOT")"

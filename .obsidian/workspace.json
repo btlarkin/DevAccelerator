@@ -186,6 +186,7 @@
   },
   "active": "e5fb48b64b35d6c3",
   "lastOpenFiles": [
+    "install_devctl.sh",
     "02_Curriculum/Phase3_DevOps.md",
     "scripts/install_user.sh",
     "scripts/install_sys.sh",
