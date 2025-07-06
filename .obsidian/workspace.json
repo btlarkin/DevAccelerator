@@ -186,6 +186,7 @@
   },
   "active": "e5fb48b64b35d6c3",
   "lastOpenFiles": [
+    "infractl.sh",
     "install_devctl.sh",
     "02_Curriculum/Phase3_DevOps.md",
     "scripts/install_user.sh",
@@ -221,7 +222,6 @@
     "10_Resources/images/guides/torrent-client/pieces.png",
     "10_Resources/images/guides/torrent-client/message.png",
     "10_Resources/images/guides/torrent-client",
-    "10_Resources/images/guides/basic-authentication",
     "10_Resources/roadmaps-original/backend/content/basic-authentication@yRiJgjjv2s1uV9vgo3n8m.md",
     "10_Resources/consolidated_course_order.md",
     "10_Resources/updated_plan.md",

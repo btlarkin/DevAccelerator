@@ -430,7 +430,7 @@ devctl_bootstrap_dotfiles() {
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
-# devctl_user_setup: Install AUR helper, sync dotfiles, clone DevAccelerator, link scripts
+# devctl_user_setup: Install AUR helper, sync dotfiles, clone DevAccelerator, install dev tools, configure workspace
 # ──────────────────────────────────────────────────────────────────────────────
 devctl_user_setup() {
   local log="$LOG_DIR/user_setup.log"
@@ -447,8 +447,8 @@ devctl_user_setup() {
   done
 
   # 2. Create standard user dirs
-  echo "Creating ~/Documents and ~/Downloads…" | tee -a "$log"
-  run mkdir -p "$HOME/Documents" "$HOME/Downloads"
+  echo "Creating ~/Documents, ~/Downloads, ~/projects, ~/workspace, ~/notes…" | tee -a "$log"
+  run mkdir -p "$HOME/Documents" "$HOME/Downloads" "$HOME/projects" "$HOME/workspace" "$HOME/notes"
 
   # 3. Install AUR helper (yay)
   if ! command -v yay &>/dev/null; then
@@ -464,7 +464,7 @@ devctl_user_setup() {
     echo "yay already installed" | tee -a "$log"
   fi
 
-  # 4. Sync dotfiles
+  # 4. Sync dotfiles (assuming they're in a Git repo)
   local DOTFILES="${DOTFILES:-$HOME/dotfiles}"
   if [[ ! -d "$DOTFILES" ]]; then
     echo "Cloning dotfiles to $DOTFILES…" | tee -a "$log"
@@ -478,7 +478,7 @@ devctl_user_setup() {
   run devctl bootstrap dotfiles                           2>&1 | tee -a "$log"
 
   # 5. Clone DevAccelerator vault
-  local VAULT_ROOT="${VAULT_ROOT:-$HOME/opt/DevAccelerator}"
+  local VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
   if [[ ! -d "$VAULT_ROOT" ]]; then
     echo "Cloning DevAccelerator to $VAULT_ROOT…" | tee -a "$log"
     run mkdir -p "$(dirname "$VAULT_ROOT")"
@@ -488,16 +488,45 @@ devctl_user_setup() {
     run git -C "$VAULT_ROOT" pull                       2>&1 | tee -a "$log"
   fi
 
-  # 6. Link legacy project scripts (optional)
-  for script in new_project.sh launch_project.sh; do
-    if [[ -f "$VAULT_ROOT/scripts/$script" ]]; then
-      echo "Linking $script to /usr/local/bin…" | tee -a "$log"
-      run sudo ln -sf "$VAULT_ROOT/scripts/$script" /usr/local/bin/"${script%.*}"
-    fi
-  done
+  # 6. Link project scripts from DevAccelerator
+  echo "Linking project scripts globally from DevAccelerator…" | tee -a "$log"
+  chmod +x "$VAULT_ROOT/scripts/new_project.sh" "$VAULT_ROOT/scripts/launch_project.sh"
+  run sudo ln -sf "$VAULT_ROOT/scripts/new_project.sh" /usr/local/bin/new_project
+  run sudo ln -sf "$VAULT_ROOT/scripts/launch_project.sh" /usr/local/bin/launch_project
+
+  # 7. Install Python CLI tools
+  echo "Installing Python CLI tools (black, flake8, isort)…" | tee -a "$log"
+  # Ensure pip is available - this relies on Python being installed via bootstrap_apps
+  if command -v pip &>/dev/null; then
+      run pip install --user black flake8 isort &>/dev/null || true
+  else
+      echo "Warning: pip not found. Skipping Python CLI tools installation." | tee -a "$log"
+  fi
+
+  # 8. Install global Node tools
+  if command -v yarn &>/dev/null; then
+    echo "Installing global Node tools (eslint, prettier)…" | tee -a "$log"
+    run yarn global add eslint prettier &>/dev/null || true
+  elif command -v npm &>/dev/null; then
+    echo "Installing global Node tools (eslint, prettier) via npm…" | tee -a "$log"
+    run npm install -g eslint prettier &>/dev/null || true
+  else
+    echo "Warning: Neither yarn nor npm found. Skipping Node CLI tools installation." | tee -a "$log"
+  fi
+
+  # 9. Inject Obsidian Config
+  local OBS_SRC="$VAULT_ROOT/10_Resources/obsidian_config"
+  local OBS_DST="$VAULT_ROOT/.obsidian" # Obsidian config is typically within the vault itself, this path makes sense
+  if [[ -d "$OBS_SRC" ]]; then
+    echo "Applying prewired Obsidian config…" | tee -a "$log"
+    run rsync -av --delete "$OBS_SRC/" "$OBS_DST/" &>/dev/null
+  else
+    echo "Warning: Obsidian config source not found at $OBS_SRC. Skipping config injection." | tee -a "$log"
+  fi
 
   echo "User setup complete." | tee -a "$log"
 }
+
 # ──────────────────────────────────────────────────────────────────────────────
 
 # ──────────────────────────────────────────────────────────────────────────────
