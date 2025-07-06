@@ -15,7 +15,7 @@ To establish a highly automated, reproducible, and modular IT environment that a
 - Understand different strategies for delivering projects to clients.
     
 
-## 📋 PrerequisitesUntitled
+## 📋 Prerequisites
 
 Before you begin, ensure you have the following in place on your physical host machine (the machine running VirtualBox):
 
@@ -58,7 +58,7 @@ This phase focuses on getting your primary control center, the `Local Developmen
         ```
         # From within the Arch Linux LiveCD environment on your new VM:
         # First, download devctl.sh (replace with your actual DevAccelerator URL)
-        curl -fsSL https://raw.githubusercontent.com/btlarkin/DevAccelerator/main/install_devctl.sh -o /root/devctl.sh
+        curl -fsSL https://raw.githubusercontent.com/your-username/DevAccelerator/main/devctl.sh -o /root/devctl.sh
         chmod +x /root/devctl.sh
         
         # Now, run the OS bootstrap command
