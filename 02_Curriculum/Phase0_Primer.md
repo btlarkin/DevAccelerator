@@ -1,21 +1,38 @@
-# 📚 Phase 0: Primer
+# 📚 **Phase 0: Foundation & Your Control Center (Weeks 1-4)**
 
-**Outcome:** Establish a foundational understanding of computer science concepts and build mathematical maturity. Your terminal-first development environment is fully configured and ready for action.
+**Outcome:** Establish a solid understanding of computer science fundamentals and create your fully configured `Local Development VM`, which serves as your command center for all infrastructure and application development. This phase also introduces your first tangible web project: a landing page for your game.
 
-### 1. Introduction to Computer Science
+obsidian://open?vault=DevAccelerator&file=02_Curriculum%2FPhase0_Primer
 
-* [ ] **[Harvard CS50](https://youtu.be/h6lqxDwUmJQ?si=uzLE-N6VoMC6eDgL)** (CS50 is a great starting point to introduce you to computation and problem-solving).
-* [ ] **Read *The Imposter's Handbook* series:** Read this in parallel to reinforce CS fundamentals. [[The Imposter_s Handbook.pdf|book 1]] [[The Imposter_s Handbook Season 2.pdf|book 2]]
+### 1. **Core Computer Science Fundamentals**
 
-### 2. Foundational Math
+- [ ] [**Harvard CS50**](https://youtu.be/h6lqxDwUmJQ?si=uzLE-N6VoMC6eDgL "null"): Comprehensive introduction to computation and problem-solving.
+    
+- [ ] **Read** _**The Imposter's Handbook**_ **(Book 1)**: Read this in parallel to reinforce CS fundamentals.
+    
+- [ ]  [**How to learn JavaScript to Make Games**](https://www.youtube.com/watch?v=XZEcO3OWjdA "null"): This crash course provides foundational JavaScript concepts specifically tailored for game development. It will give you a stronger understanding of underlying game programming principles, better preparing you for later phases.
+    
 
-* [ ] **[Calculus 1A: Differentiation](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.1x+2T2019/about)** from OSSU "Core math".
-* [ ] **[Calculus 1B: Integration](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.2x+3T2019/about)** from OSSU "Core math".
-* [ ] **[Calculus 1C: Coordinate Systems & Infinite Series](https://openlearninglibrary.mit.edu/courses/course-v1:MITx+18.01.3x+1T2020/about)** from OSSU "Core math".
-**Note:** The Calculus courses can be done in parallel with other courses to build mathematical maturity.
+### 2. **Unified IT Environment Project: Local Development Environment Setup**
 
-### 3. Unified IT Environment Project: Local Development Environment Setup 
+- [x] **Action:** Deploy your **Local Development VM** using VirtualBox with **Arch Linux** as your primary workstation. This VM will be your personal control center.
+    
+- [x] **Configuration:** Set up a terminal-first environment with **Neovim, tmux, tmuxp, Git**, and essential command-line tools (e.g., `fzf`, `ripgrep`). Ensure fluent usage.
+    
+- [x] **Automation Focus:** Utilize `devctl bootstrap os`, `devctl bootstrap chroot`, `devctl bootstrap apps`, and `devctl user setup` to automate this setup. This includes cloning your `DevAccelerator` repository (containing `infractl`) and ensuring `infractl` is available in your PATH.
+    
+- **Outcome:** A ready-to-use, powerful `Local Development VM` from which you'll manage your entire infrastructure. Your `devctl` and `infractl` scripts are operational.
+    
 
-* [x] **Local Development Environment Setup:** This module is already complete, leveraging your mouseless, terminal-first setup. You have deployed your **Local Development VM** using VirtualBox with **Arch Linux** as your primary workstation. **Neovim, tmux, tmuxp, and your preferred command-line tools (fzf, ripgrep, etc.)** are fully configured and fluently used. Git is integrated for version control.
+### 3. **NEW! Game Landing Page (Initial Web Project)**
 
-[[Phase1_Foundation]]
+- [ ] **Action:** Build a simple, static **landing page for your "Arcane Runes" game**. This will be your very first public-facing web project.
+    
+    - Focus on basic HTML structure, CSS styling, and minimal JavaScript for interactive elements (e.g., a simple image carousel or a "Coming Soon" countdown).
+        
+    - This project serves as an immediate application of your foundational web skills and sets the stage for the game itself.
+        
+- **Tool Focus:** HTML, CSS, JavaScript, Git.
+    
+
+**Deliverable:** A fully configured `Local Development VM` ready for complex tasks. A basic, static landing page for "Arcane Runes" deployed (e.g., via GitHub Pages or a simple Nginx static server).

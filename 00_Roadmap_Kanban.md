@@ -30,3 +30,5 @@ kanban-plugin: board
 {"kanban-plugin":"board"}
 ```
 %%- [ ] road-road
+- [ ] learnjs
+- [ ] learnjs

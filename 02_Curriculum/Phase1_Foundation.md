@@ -1,113 +1,64 @@
-# 📚 Phase 1: Foundational Skills & Initial Freelancing (Weeks 1-8)
+# 📚 **Phase 1: Core Infrastructure & Foundational Full-Stack for Gaming (Weeks 5-12)**
 
-**Outcome:** Become a capable junior freelancer ready to take on Tier 1 projects and start earning cash flow and testimonials.
+**Outcome:** Deploy foundational Unified IT Environment components (VMs, authentication, provisioning) and build core front-end and back-end web development skills, enabling basic freelancing and preparing for game development.
 
-### 1. Core Frontend & JavaScript
+### 1. **Core Full-Stack Web Development**
 
-* [ ] **[The Complete JavaScript Course](https://www.udemy.com/course/the-complete-javascript-course/)**
-* [ ] **[[learnenoughhtmlcssandlayouttobedangerous.pdf|Learn Enough HTML, CSS, & Layout to be Dangerous]]**
-* [ ] **[[The Complete Developer. Master the Full Stack with...2024.pdf|The Complete Developer: Master the Full Stack with TypeScript, React, Next.Js, MongoDB, and Docker]]**.
-* [ ] **Project:** Build your personal portfolio/website. This is your first public-facing asset for freelancing.
+- [ ] [**The Complete JavaScript Course**](https://www.udemy.com/course/the-complete-javascript-course/ "null"): Master JavaScript fundamentals.
+    
+- [ ] **[[learnenoughhtmlcssandlayouttobedangerous.pdf|Learn Enough HTML, CSS, & Layout to be Dangerous]]**: Essential web styling and structure.
+    
+- [ ] [**The Complete Developer (TypeScript, React, Next.Js, MongoDB, Docker)**](https://www.google.com/search?q=https://www.udemy.com/course/the-complete-developer-master-the-full-stack-with-typescript-react-nextjs-mongodb-and-docker/ "null"): Build a modern full-stack application foundation.
+    
+- [ ] **Project: Enhance Game Landing Page / Personal Portfolio**: Evolve your game landing page into a more robust site, potentially adding sections for "About the Studio," "Dev Blog," or integrating it with your personal portfolio.
+    
+- [ ] [**Complete SQL & Databases Bootcamp: Zero to Mastery**](https://www.udemy.com/course/complete-sql-databases-bootcamp-zero-to-mastery/ "null"): Understand database fundamentals, crucial for game data, user accounts, and future e-commerce.
+    
+- [ ] [**Complete Node.js Developer in 202X**](https://www.udemy.com/course/complete-nodejs-developer-zero-to-mastery/ "null") (Recommended for web dev alignment) **OR** [**Complete Python Developer in 202X**](https://www.udemy.com/course/complete-python-developer-zero-to-mastery/ "null"): Choose one to master backend development.
+    
+- [ ] **Project: Player Profile API & Web Dashboard (Basic)**:
+    
+    - [ ] **Action:** Develop a backend API (using Node.js/Python) to store and retrieve basic player character data (e.g., core stats, simple inventory placeholders, player ID).
+        
+    - [ ] **Action:** Build a simple web-based dashboard (using React) that displays this player data, accessible via your game's website. This will be the foundation for the player's personal overview.
+        
 
-### 2. Foundational UI Components
+### 2. **Unified IT Environment Project: Phase 1 Infrastructure Modules**
 
-* [ ] **[[simple-tabs|Tabs:]]** Create a multi-panel content display with a tabbed navigation.
-* [ ] **[[accordion|Accordion Component:]]** Build a collapsible content section for FAQs or menus.
-* [ ] **[[tooltip-ui|Tooltip UI:]]** Develop a simple user interface element that displays information on hover.
-* [ ] **[[accessible-form-ui|Accessible Form UI:]]** Build a form that follows accessibility best practices for usability.
-* [ ] **[[cookie-consent|Cookie Consent:]]** Create a front-end banner to handle cookie consent.
-* [ ] **[[restricted-textarea|Restricted Textarea:]]** Develop a textarea with a live character count and character limit.
-* [ ] **[[custom-dropdown|Custom Dropdown:]]** Build a custom-styled dropdown menu using JavaScript.
+- [ ] **Automation Focus:** Use `infractl init-infra` to set up your `vanilla_project_infra` locally, pulling the latest blueprint.
+    
+- [ ] **Module 1.1: Hybrid Cloud VM Deployment & Basic Networking:**
+    
+    - [ ] **Action:** Deploy an **AWS-like VM** (Ubuntu Server) and an **Azure-like VM** (Windows Server or Ubuntu Server) using VirtualBox. These will host different parts of your game's backend.
+        
+    - [ ] **Configuration:** Configure basic Bridged networking to ensure all VMs can communicate with each other.
+        
+    - [ ] **Security:** Apply initial security measures like firewalls (UFW on Linux, Windows Firewall) to control basic traffic.
+        
+    - **Tool Focus:** VirtualBox, Ubuntu Server, Windows Server (optional), basic networking (IP addressing, firewall rules).
+        
+- [ ] **Module 1.2: Centralized Authentication (FreeIPA) & Provisioning (Foreman+Katello):**
+    
+    - [ ] **Action:** Deploy two VMs for **FreeIPA authentication services** (Ubuntu Server). This will be used to manage user accounts for your game platform and internal studio operations, including authenticating users for the **Player Profile API**.
+        
+    - [ ] **Action:** Deploy a VM and install **Foreman+Katello** for infrastructure provisioning and lifecycle management.
+        
+    - [ ] **Configuration:** Configure Foreman components and register your FreeIPA hosts to the Foreman server.
+        
+    - [ ] **Automation:** Set up a DHCP server (e.g., `isc-dhcp-server` or within Foreman) to handle PXE instructions for unattended provisioning.
+        
+    - [ ] **Action:** Use Foreman to provision an unattended VM (e.g., a new Ubuntu Server instance) and install **Ansible** on it (this will be your Ansible control node).
+        
+    - **Tool Focus:** FreeIPA, Foreman+Katello, DHCP, PXE boot, Ansible.
+        
 
-### 3. Portfolio (Static Websites)
+### 3. **Intro to Freelancing & Project Management**
 
-* [ ] **[[single-page-cv|Single-Page CV:]]** Develop a single-page professional resume website.
-* [ ] **[[portfolio-website|Personal Portfolio:]]** Build a showcase for your projects and skills.
-* [ ] **[[changelog-component|Changelog Component:]]** Create a list of updates or features for a project.
-* [ ] **[[testimonial-cards|Testimonial Cards:]]** Develop a component to display client testimonials.
-* [ ] **[[image-grid|Image Grid Layout:]]** Build a responsive grid for displaying images.
-* [ ] **[[github-actions-deployment-workflow|GitHub Pages Deployment:]]** Automate the deployment of your static sites directly from Git.
-* [ ] **[[basic-dns|DNS Setup]]** Configure a custom domain name for your live site.
-* [ ] **[[static-site-server|Static Site Server:]]** Learn to set up a Linux server to host static content with Nginx.
+- [ ] [**Complete Guide to Freelancing: Zero to Mastery**](https://www.udemy.com/course/complete-guide-to-freelancing-zero-to-mastery/ "null"): Provides the business fundamentals you need to start earning immediately.
+    
+- [ ] **[[scrum-the-art-of-doing-twice-the-work-in-half-the-time_compress.pdf|Scrum: The Art of Doing Twice the Work in Half the Time]]**: Learn Agile project management to deliver client work efficiently.
+    
+- [ ] **Action:** Immediately start searching for Tier 1 freelance projects (e.g., static sites, landing pages, minor enhancements) to build cash flow and testimonials, supporting your indie dev studio.
+    
 
-### 4. Introduction to Freelancing & Project Management
-
-* [ ] **[Complete Guide to Freelancing: Zero to Mastery](https://www.udemy.com/course/complete-guide-to-freelancing-zero-to-mastery/)** This course provides the business fundamentals you need to start earning immediately.
-* [ ] **[[scrum-the-art-of-doing-twice-the-work-in-half-the-time_compress.pdf|Scrum: The Art of Doing Twice the Work in Half the Time]]**. Learn Agile project management to deliver client work efficiently.
-* [ ] **Action:** Immediately start searching for Tier 1 freelance projects (single-page sites, landing pages, minor enhancements) and build a network to establish cash flow and testimonials.
-
-### 5. Deepen JavaScript & React
-
-* [ ] **[JavaScript: Understanding the Weird Parts](https://www.udemy.com/course/understand-javascript/)**
-* [ ] **[JavaScript Web Project: 20 Projects to Build Your Portfolio](https://www.udemy.com/course/javascript-web-projects-to-build-your-portfolio-resume/)**
-* [ ] **[TypeScript: The Complete Developer's Guide](https://www.udemy.com/course/typescript-the-complete-developers-guide/)**
-* [ ] **[Complete React Developer in 202X: Zero to Mastery](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/)** [[100_frontend|Frontend Learning Path]]
-
-### 6. Systematic Program Design
-
-* [ ] **[[10_Resources/computer-science/README#Systematic Program Design|Systematic Program Design]]** from OSSU "Core programming".
-
-### 7. Unified IT Environment Project: Phase 1 Modules
-
-* **Module 1.1: Initial Infrastructure Planning & Base VM Deployment# 📚 Phase 1: Foundational Skills & Initial Freelancing (Weeks 1-8)
-
-**Outcome:** Become a capable junior freelancer ready to take on Tier 1 projects and start earning cash flow and testimonials.
-
-​￼### 1. Core Frontend & JavaScript
-
-* [ ] **[The Complete JavaScript Course](https://www.udemy.com/course/the-complete-javascript-course/)￼**
-* [ ] **[[learnenoughhtmlcssandlayouttobedangerous.pdf|Learn Enough HTML, CSS, & Layout to be Dangerous]]**
-* [ ] **[[The Complete Developer. Master the Full Stack with...2024.pdf|The Complete Developer: Master the Full Stack with TypeScript, React, Next.Js, MongoDB, and Docker]]**.
-* [ ] **Project:** Build your personal portfolio/website. This is your first public-facing asset for freelancing.
-
-​￼### 2. Foundational UI Components
-
-* [ ] **[[simple-tabs|Tabs:]]** Create a multi-panel content display with a tabbed navigation.
-* [ ] **[[accordion|Accordion Component:]]** Build a collapsible content section for FAQs or menus.
-* [ ] **[[tooltip-ui|Tooltip UI:]]** Develop a simple user interface element that displays information on hover.
-* [ ] **[[accessible-form-ui|Accessible Form UI:]]** Build a form that follows accessibility best practices for usability.
-* [ ] **[[cookie-consent|Cookie Consent:]]** Create a front-end banner to handle cookie consent.
-* [ ] **[[restricted-textarea|Restricted Textarea:]]** Develop a textarea with a live character count and character limit.
-* [ ] **[[custom-dropdown|Custom Dropdown:]]** Build a custom-styled dropdown menu using JavaScript.
-
-​￼### 3. Portfolio (Static Websites)
-
-* [ ] **[[single-page-cv|Single-Page CV:]]** Develop a single-page professional resume website.
-* [ ] **[[portfolio-website|Personal Portfolio:]]** Build a showcase for your projects and skills.
-* [ ] **[[changelog-component|Changelog Component:]]** Create a list of updates or features for a project.
-* [ ] **[[testimonial-cards|Testimonial Cards:]]** Develop a component to display client testimonials.
-* [ ] **[[image-grid|Image Grid Layout:]]** Build a responsive grid for displaying images.
-* [ ] **[[github-actions-deployment-workflow|GitHub Pages Deployment:]]** Automate the deployment of your static sites directly from Git.
-* [ ] **[[basic-dns|DNS Setup]]** Configure a custom domain name for your live site.
-* [ ] **[[static-site-server|Static Site Server:]]** Learn to set up a Linux server to host static content with Nginx.
-
-​￼### 4. Introduction to Freelancing & Project Management
-
-* [ ] **[Complete Guide to Freelancing: Zero to Mastery](https://www.udemy.com/course/complete-guide-to-freelancing-zero-to-mastery/)￼** This course provides the business fundamentals you need to start earning immediately.
-* [ ] **[[scrum-the-art-of-doing-twice-the-work-in-half-the-time_compress.pdf|Scrum: The Art of Doing Twice the Work in Half the Time]]**. Learn Agile project management to deliver client work efficiently.
-* [ ] **Action:** Immediately start searching for Tier 1 freelance projects (single-page sites, landing pages, minor enhancements) and build a network to establish cash flow and testimonials.
-
-​￼### 5. Deepen JavaScript & React
-
-
-* [ ] **[JavaScript: Understanding the Weird Parts](https://www.udemy.com/course/understand-javascript/)￼**
-- [ ] **[JavaScript Web Project: 20 Projects to Build Your Portfolio](https://www.udemy.com/course/javascript-web-projects-to-build-your-portfolio-resume/)￼**
-* [ ] **[TypeScript: The Complete Developer's Guide](https://www.udemy.com/course/typescript-the-complete-developers-guide/)￼**
-* [ ] **[Complete React Developer in 202X: Zero to Mastery](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/)￼** [[100_frontend|Frontend Learning Path]]
-
-​￼### 6. Systematic Program Design
-
-* [ ] **[[10_Resources/computer-science/coursepages/spd/README|Systematic Program Design]]** from OSSU "Core programming".
-
-**Deliverable:** A foundational portfolio of single-page sites and interactive components, ready to start earning cash flow and testimonials with Tier 1 freelance tasks. This portfolio will then progress to include a full-stack dashboard (React + Node.js) wired to an SQL database, enabling you to expand your offerings to Tier 2 dynamic web solutions.**
-    * [ ] **Action:** Begin documenting the Unified IT Environment architecture in your chosen wiki software (to be set up later, but start planning the structure now).
-    * [ ] **Tool Focus:** VirtualBox, Arch Linux, Neovim, tmux, tmuxp, Git, your command-line utilities.
-* **Module 1.2: Core Authentication Services (FreeIPA)**
-    * [ ] Deploy two VMs for FreeIPA authentication services (Ubuntu Server) using VirtualBox.
-    * [ ] Assign static IP addresses to these VMs.
-    * [ ] Implement the bonus task: Create a backup job/script for the FreeIPA environment using `systemd-timers`.
-    * [ ] **Tool Focus:** VirtualBox, Ubuntu Server, basic Linux system administration, `systemd`, `ipa-backup`.
-
-**Deliverable:** A foundational portfolio of single-page sites and interactive components, ready to start earning cash flow and testimonials with Tier 1 freelance tasks. This portfolio will then progress to include a full-stack dashboard (React + Node.js) wired to an SQL database, enabling you to expand your offerings to Tier 2 dynamic web solutions. Initial VMs for your Unified IT Environment are set up, and core authentication services are in place.
-
-[[Phase2_Fullstack]]
+**Deliverable:** Core hybrid VMs and authentication/provisioning services of your Unified IT Environment are deployed via IaC. You have a robust game landing page/personal portfolio, and foundational full-stack skills (JavaScript, HTML, CSS, React, Node.js/Python, SQL), including a **basic Player Profile API and web dashboard**, ready to tackle basic freelance projects and prepare for core game development.

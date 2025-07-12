@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "10_Resources/cs50/Lecture_0_Scratch/Starting_from_Scratch.md",
+                "file": "02_Curriculum/Phase3_Specialization.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Starting_from_Scratch"
+              "title": "Phase3_Specialization"
             }
           }
         ]
@@ -187,29 +187,30 @@
   },
   "active": "e7a7b303c61786dc",
   "lastOpenFiles": [
-    "10_Resources/cs50/Lecture_0_Scratch/Problem_Set_0.md",
+    "11_Project_Templates/VanillaWebProject/js/lib/kaboom.mjs",
+    "11_Project_Templates/VanillaWebProject/js/lib",
+    "11_Project_Templates/VanillaWebProject/js/main.js",
+    "11_Project_Templates/VanillaWebProject/js/kaboom.mjs",
+    "11_Project_Templates/VanillaWebProject/js/game_stuff/kaboom.mjs",
+    "11_Project_Templates/VanillaWebProject/js/game_stuff/index.html",
+    "11_Project_Templates/VanillaWebProject/js/game_stuff",
+    "02_Curriculum/Phase4_Capstone and Consulting.md",
+    "02_Curriculum/Phase3_Specialization.md",
+    "02_Curriculum/Phase2_Fullstack.md",
+    "02_Curriculum/Phase1_Foundation.md",
+    "02_Curriculum/Phase0_Primer.md",
+    "00_Index.md",
+    "10_Resources/learning_library/Building your Mouseless Development Environment.pdf",
+    "README.md",
     "10_Resources/cs50/Lecture_0_Scratch/Starting_from_Scratch.md",
+    "10_Resources/cs50/Lecture_0_Scratch/Problem_Set_0.md",
     "10_Resources/cs50/Lecture_0_Scratch/Lecture 0 Notes.md",
     "10_Resources/cs50/Lecture_0_Scratch/src0.zip",
     "10_Resources/cs50/Lecture_0_Scratch/Unconfirmed 55122.crdownload",
-    "00_Index.md",
     "10_Resources/cs50/Lecture_0_Scratch",
     "10_Resources/cs50/Introduction.md",
     "10_Resources/200_backend.md",
-    "10_Resources/cs50",
     "Project_Workflow_Guide.md",
-    "10_Resources/learning_library/Building your Mouseless Development Environment.pdf",
-    "infractl.sh",
-    "install_devctl.sh",
-    "02_Curriculum/Phase3_DevOps.md",
-    "scripts/install_user.sh",
-    "scripts/install_sys.sh",
-    "scripts/install_chroot.sh",
-    "02_Curriculum/Phase2_Fullstack.md",
-    "02_Curriculum/Phase4_Specialization.md",
-    "02_Curriculum/Phase1_Foundation.md",
-    "02_Curriculum/Phase0_Primer.md",
-    "README.md",
     "10_Resources/lark_self_environment.md",
     "10_Resources/400_ai-engineer.md",
     "10_Resources/500_mlops.md",
@@ -231,7 +232,6 @@
     "10_Resources/updated_plan.md",
     "10_Resources/projects/multi-container-service.md",
     "10_Resources/projects/multiservice-docker.md",
-    "10_Resources/computer-science/coursepages/spd/README.md",
-    "10_Resources/computer-science/README.md"
+    "10_Resources/computer-science/coursepages/spd/README.md"
   ]
 }

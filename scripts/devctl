@@ -4,7 +4,7 @@ trap 'echo "Error in devctl at line $LINENO"; exit 1' ERR
 
 # Default config (override via --config or env)
 DOTFILES="${DOTFILES:-$HOME/dotfiles}"
-VAULT_ROOT="${VAULT_ROOT:-$HOME/opt/DevAccelerator}"
+VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
 LOG_DIR="${LOG_DIR:-$HOME/.local/state/devctl}"
 CONFIG_FILE=""  # optional global config
 
@@ -545,7 +545,7 @@ devctl_project_new() {
 
   # 2. Define paths (override via env if needed)
   local TITLE="$1"
-  local VAULT_ROOT="${VAULT_ROOT:-$HOME/opt/DevAccelerator}"
+  local VAULT_ROOT="${VAULT_ROOT:-$HOME/workspace/DevAccelerator}"
   local TEMPLATE_DIR="${TEMPLATE_DIR:-$VAULT_ROOT/11_Project_Templates/VanillaWebProject}"
   local PROJECTS_DIR="${PROJECTS_DIR:-$HOME/projects}"
   local OBS_NOTE_DIR="${OBSIDIAN_NOTE_DIR:-$VAULT_ROOT/03_Projects}"

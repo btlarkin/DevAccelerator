@@ -1,69 +1,59 @@
-# 📚 Phase 2: Full-Stack Integration & The Cloud Resume Challenge (Weeks 9-16)
+# 📚 **Phase 2: Game Development, Containerization & Initial Deployment (Weeks 13-20)**
 
-**Outcome:** Become a full-stack developer with hands-on cloud experience, ready for Tier 2 freelance projects and eligible for a junior developer role.
+**Outcome:** Build your core web-based game, containerize it, and deploy it to your evolving infrastructure, establishing a strong foundation in DevOps principles including CI/CD and container orchestration. The game will integrate with your backend player profile system.
 
-### 1. Database Fundamentals
+### 1. **Core Game Development & Deployment**
 
-* [ ] **[Complete SQL & Databases Bootcamp: Zero to Mastery](https://www.udemy.com/course/complete-sql-databases-bootcamp-zero-to-mastery/)**
-* [ ] **[[mysqlcrashcourse.pdf|My SQL Crash Course]]**
+- [ ] [**Easy JavaScript Game Development with Kaboom.js (Mario, Zelda, and Space Invaders) - Full Course**](https://www.youtube.com/watch?v=4OaHB0JbJDI "null"):
+    
+    - [ ] **Action:** Build the core 2D action-adventure game ("Arcane Runes") using Kaboom.js. Focus on implementing the core mechanics (platforming, combat, puzzle solving) and ensuring **PC and mobile browser compatibility**.
+        
+    - [ ] **Action:** Explore and implement **Progressive Web App (PWA)** features for an app-like experience (offline capabilities, home screen install).
+        
+    - [ ] **Integration:** Integrate the game with your **Player Profile API** (developed in Phase 1) to fetch initial player stats or save basic progress directly from within the game client (when online).
+        
+- [ ] **Containerization:** Learn to containerize your game (frontend) and its initial backend API services, including the **Player Profile API**, using **Docker**. This is crucial for consistent deployment.
+    
 
-### 2. Backend Development (Node.js & Python)
+### 2. **Unified IT Environment Project: Phase 2 Infrastructure Modules**
 
-* [ ] **[Complete Node.js Developer in 202X](https://www.udemy.com/course/complete-nodejs-developer-zero-to-mastery/)**
-* [ ] **[Complete Python Developer in 202X](https://www.udemy.com/course/complete-python-developer-zero-to-mastery/) [[200_backend|Backend Learning Path]]**
-* [ ] **[[blogging-platform-api|Blogging Platform API:]]** Build the backend to handle posts, comments, and users.
-* [ ] **[[todo-list-api|Todo List API:]]** Build a basic backend API with authentication for managing tasks.
-* [ ] **[[expense-tracker-api|Expenses Tracker API:]]** Create a secure API to manage financial data.
-* [ ] **[[weather-api-wrapper-service|Weather API:]]** Build a backend to fetch and cache data from a third-party weather service.
-* [ ] **[[github-user-activity|GitHub User Activity:]]** Create a backend to retrieve and display user activity from the GitHub API.
+- [ ] **Automation Focus:** Use `infractl deploy <game_project_name>` to deploy your game's infrastructure, continuously updating your `vanilla_project_infra` blueprint.
+    
+- [ ] **Module 2.1: Core DevOps Dashboard & CI/CD Pipeline:**
+    
+    - [ ] **Action:** Deploy a **Testing, Ticketing, Deployment VM** (Ubuntu Server) using Foreman.
+        
+    - [ ] **Automation:** Implement a comprehensive **CI/CD pipeline (Jenkins, GitLab CI, or GitHub Actions Self-Hosted Runner)** on this VM.
+        
+    - [ ] **Configuration:** Configure automated testing (e.g., Pytest for backend, Jest for frontend/game logic) and automated deployment processes within the pipeline for your game and **Player Profile API**.
+        
+    - **Tool Focus:** Jenkins/GitLab CI/GitHub Actions, testing frameworks.
+        
+- [ ] **Module 2.2: Kubernetes Cluster Foundation:**
+    
+    - [ ] **Action:** Provision three VMs (1 master, 2 workers) for a **Kubernetes cluster** using `kubeadm` (managed by Ansible/Foreman).
+        
+    - [ ] **Integration:** Integrate **MetalLB for load balancing** and **Nginx-ingress for external access** to your game's services and the **Player Profile API**.
+        
+    - **Tool Focus:** Kubernetes (`kubeadm`, `kubectl`), MetalLB, Nginx-ingress.
+        
+- [ ] **Module 2.3: Internal Git Server & Docker Registry:**
+    
+    - [ ] **Action:** Provision a VM for an **internal Git server (GitLab Community Edition or Gitea)**. Your game's source code and **Player Profile API** code will be hosted here.
+        
+    - [ ] **Action:** Provision another VM to act as an **internal Docker registry** (e.g., `registry:2`). Your game's and API's Docker images will be stored here.
+        
+    - [ ] **Configuration:** Configure Kubernetes nodes to use the internal registry for pulling container images, optimizing image pull times and security.
+        
+    - **Tool Focus:** GitLab CE/Gitea, Docker Registry.
+        
+- [ ] **Module 2.4: Logging and Monitoring Core (ELK Stack):**
+    
+    - [ ] **Action:** Provision VMs for an **Elasticsearch cluster, Logstash, and Kibana**.
+        
+    - [ ] **Configuration:** Configure **Beats** (Metricbeat, Filebeat, Journalbeat) on all your game's VMs and Kubernetes nodes to push logs and metrics to the ELK stack. This is crucial for debugging your game, the **Player Profile API**, and understanding overall performance.
+        
+    - **Tool Focus:** Elasticsearch, Logstash, Kibana, various Beats.
+        
 
-### 3. Capstone Project 1: The Cloud Resume Challenge (CRC)
-
-* [ ] **[The Cloud Resume Challenge](https://cloudresumechallenge.dev/docs/the-challenge/aws/)**
-* [ ] **[[The Cloud Resume Challenge Guidebook - AWS Edition.pdf|The Cloud Resume Challenge Guidebook - AWS Edition]]**
-* [ ] **[The Cloud Resume Challenge - Azure Edition](https://cloudresumechallenge.dev/docs/the-challenge/azure/)** 
-* [ ] **[[The Cloud Resume Challenge Guidebook - Azure Edition.pdf|The Cloud Resume Challenge Guidebook - Azure Edition]]**
-* [ ] **Action:** Build a serverless resume website using S3, Lambda, API Gateway, and DynamoDB (AWS), AND a version using Azure Functions, Azure Cosmos DB, and Azure API Management, to demonstrate practical multi-cloud skills and serverless architecture.
-
-
-### 4. Full-Stack Project Clusters
-
-* [ ] **[[personal-blog|Personal Blog:]]** Develop the frontend interface for the blog that consumes your API.
-* [ ] **[[task-tracker|Task Tracker:]]** Build the frontend UI for managing a to-do list.
-* [ ] **[[fitness-workout-tracker|Workout Tracker:]]** Develop a frontend to log and track workout data.
-* [ ] **[[expense-tracker|Expense Tracker:]]** Create the user interface for tracking expenses.
-* [ ] **[[weather-app|Weather Web App:]]** Build the frontend to display weather data from your API.
-
-### 5. Continue with OSSU Core CS Topics
-
-* [ ] **[[10_Resources/computer-science/README#Core math|Core math:]]** Complete "Mathematics for Computer Science".
-* [ ] **[[10_Resources/computer-science/README#Core systems|Core systems:]]** Complete the "Nand to Tetris" sequence, "Operating Systems: Three Easy Pieces," and "Computer Networking: a Top-Down Approach".
-* [ ] **[[10_Resources/computer-science/README|Core theory:]]** Complete the "Algorithms" specialization courses.
-* [ ] **[[10_Resources/computer-science/README#Core programming|Core programming:]]** Complete the remaining courses from the "Core programming" section.
-* [ ] **[[10_Resources/computer-science/README#CS Tools|CS Tools:]]** Complete "The Missing Semester of Your CS Education".
-* [ ] **[[10_Resources/computer-science/README#Core security|Core security:]]** Complete the courses on security fundamentals and secure coding.
-* [ ] **[[10_Resources/computer-science/README#Core applications|Core applications:]]** Complete the courses on databases, machine learning, computer graphics, and software engineering.
-* [ ] **[[10_Resources/computer-science/README#Core ethics|Core ethics:]]** Complete the ethics courses.
-
-### 6. Unified IT Environment Project: Phase 2 Modules
-
-* **Module 2.1: Hybrid Cloud VM Deployment & Basic Networking**
-    * [ ] Deploy an **AWS-like VM** (Ubuntu Server) and an **Azure-like VM** (Windows Server or Ubuntu Server) using VirtualBox.
-    * [ ] Configure basic networking: Ensure all VMs can communicate with each other using Bridged networking.
-    * [ ] Apply initial security measures like firewalls (UFW on Linux, Windows Firewall) to control basic traffic.
-    * [ ] **Tool Focus:** VirtualBox, Ubuntu Server, Windows Server (optional), basic networking (IP addressing, firewall rules).
-* **Module 2.2: Centralized Provisioning & Initial Configuration Management (Foreman+Katello)**
-    * [ ] Deploy a VM and install Foreman+Katello for infrastructure provisioning and lifecycle management.
-    * [ ] Configure Foreman components and register FreeIPA hosts to the Foreman server.
-    * [ ] Set up a DHCP server (e.g., `isc-dhcp-server` or within Foreman) to handle PXE instructions for unattended provisioning.
-    * [ ] Use Foreman to provision an unattended VM (e.g., a new Ubuntu Server instance) and install **Ansible** on it (this will be your Ansible control node).
-    * [ ] **Tool Focus:** VirtualBox, Foreman+Katello, DHCP, PXE boot, Ansible (initial setup).
-* **Module 2.3: Storage & Email Services**
-    * [ ] Provision a VM (using Foreman) and configure it as an **ISCSI target**, then install an **NFS server** for centralized storage.
-    * [ ] Provision another VM (using Foreman) and install an **email server** (e.g., Zimbra, iRedMail, Mailinabox).
-    * [ ] Reconfigure all existing VMs to use the newly provisioned email server for sending notifications and alerts.
-    * [ ] **Tool Focus:** Ansible (for configuration management), ISCSI, NFS, chosen email server software.
-
-**Deliverable:** A live Cloud Resume Challenge site, fully showcasing serverless architecture, and foundational backend APIs for a full-stack web application (React + Node.js/ Django) wired to a SQL database. Your hybrid VM setup is complete, Foreman+Katello is configured for provisioning, and core storage/email services are operational.
-
-[[Phase3_DevOps]]
+**Deliverable:** A playable web-based game ("Arcane Runes") with PWA capabilities, integrated with a basic **Player Profile API**, all containerized and deployed via an automated CI/CD pipeline to your Kubernetes cluster within your Unified IT Environment. Your core DevOps dashboard, Git server, Docker registry, and ELK stack are operational, providing initial insights into your game's and API's performance.
